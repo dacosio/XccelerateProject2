@@ -46,13 +46,47 @@ router.post('/', (req,res) => {
 })
 
 
-function validInput(input) {
-    return typeof input.title == 'string' && input.title.trim() != ''; //assuming we have a title column in our database
+router.put('/:id', function (req, res) {
+    if (validInput(input)) {
+        const input = {//assuming these are the columns of our table
+            title: req.body.title,
+            description: req.body.description,
+            imageURL: req.body.imageURL
+        };
+        //update data by ID
+        data.updateInput(input)
+            .then(updatedData => {
+                res.redirect('/')
+            })
+    }
+    else {
+        next(new Error('Invalid'))
+    }
+  })
+  
+
+router.delete('/:id',(req,res) => {
+      if(validId(id)) {
+        data.deleteInput(id)
+            .then(function(){
+                res.redirect('/')
+            })
+      }
+      else {
+        res.status( 500);
+        res.render({
+          message:  'Invalid id'
+        });
   }
+
+
+function validInput(input) {
+        return typeof input.title == 'string' && input.title.trim() != ''; //assuming we have a title column in our database
+    }
   
 
 function validId(id) {
-    return !isNaN
-}
+        return !isNaN
+    }
 
 module.exports = router
