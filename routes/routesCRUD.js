@@ -4,16 +4,16 @@ const router = express.Router()
 const data = require('../database/CRUD')
 
 //get all stuffs
-router.get('/', (req,res) => {
+router.get('/', (req, res) => {
     data.getAll()
         .then(alldata => {
             res.render('filename_of_hbs', alldata)
         })
 })
 
-router.get('/:id', (req,res,next) => {
+router.get('/:id', (req, res, next) => {
     const id = req.params.id
-    if(validId(id)) {
+    if (validId(id)) {
         data.getOneById(id)
             .then(dataById => {
                 res.render('filename_of_hbs', dataById) //dataById is an object
@@ -24,8 +24,8 @@ router.get('/:id', (req,res,next) => {
     }
 })
 
-router.post('/', (req,res) => {
-    if(validInput(req.body)) {
+router.post('/', (req, res) => {
+    if (validInput(req.body)) {
         const input = {//assuming this is the columns of our table
             title: req.body.title,
             description: req.body.description,
@@ -33,11 +33,11 @@ router.post('/', (req,res) => {
         };
         //insert into the database
         data.create(input)
-            .then(function(){
+            .then(function () {
                 data.getAll()
-                .then(alldata => {
-                    res.render('filename_of_hbs', alldata)
-                })
+                    .then(alldata => {
+                        res.render('filename_of_hbs', alldata)
+                    })
             })
     }
     else {
@@ -62,22 +62,24 @@ router.put('/:id', function (req, res) {
     else {
         next(new Error('Invalid'))
     }
-  })
-  
+})
 
-router.delete('/:id',(req,res) => {
-      if(validId(id)) {
+
+
+router.delete('/:id', (req,res) => {
+    if(validId(id)) {
         data.deleteInput(id)
-            .then(function(){
+            .then(()=> {
                 res.redirect('/')
             })
-      }
-      else {
-        res.status( 500);
+    }
+    else {
+        res.status(500);
         res.render({
-          message:  'Invalid id'
-        });
-  }
+            message: 'Invalid id'
+        })
+    }
+})
 
 
 function validInput(input) {
