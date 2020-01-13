@@ -47,7 +47,7 @@ router.post('/', (req, res) => {
 
 
 router.put('/:id', function (req, res) {
-    if (validInput(input)) {
+    if (validInput(req.body)) {
         const input = {//assuming these are the columns of our table
             title: req.body.title,
             description: req.body.description,
