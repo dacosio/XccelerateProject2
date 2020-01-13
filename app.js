@@ -7,16 +7,16 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+const test = require('./routes/routesCRUD')
+
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-app.get('/', (req,res)=> {
-  res.render('index', {title: 'Xccelerate Project # 2'}
-  )
-})
+app.use('/', indexRouter)
+app.use('/', test )
 
 app.use(logger('dev'));
 app.use(express.json());
