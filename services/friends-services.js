@@ -1,7 +1,7 @@
 const knex = require('./knex')
 
 
-module.exports = {
+exports.friendsService = {
     getAll: function() {
         return knex('name_of_table').select()
     },        
@@ -17,12 +17,10 @@ module.exports = {
     },
 
     updateInput: function(input){
-        const id = req.params.id
         return knex('name_of_table').where('id',id).update(input)
     },
 
     deleteInput: function(id) {
-        const id = req.params.id
         return knex('name_of_table').where('id'.id).del()
     }
 }
