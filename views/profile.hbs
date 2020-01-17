@@ -1,0 +1,28 @@
+<table>
+    <thead>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Address</th>
+        <th>City</th>
+    </thead>
+    <tbody>
+        {{#each profileData}} 
+
+           <tr>
+            <td>
+                <a href="/profiles/">{{f_name}}</a>
+            </td>
+            <td>{{l_name}}</td>
+            <td>{{address}}</td>
+            <td>{{city}}</td>
+        </tr>
+        {{/each}}
+    
+    </tbody>
+    
+</table>
+
+
+
+
+

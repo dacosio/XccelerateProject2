@@ -21,9 +21,13 @@ exports.getPostById = (req,res,next)=> {
     users u
     on 
     u.user_id = c.commented_by`)
-.then(suruchi => {
-    console.log(suruchi)
+.then(data => {
+    console.log(data)
   //   res.json(data);
-    res.render('posts', {postsData: suruchi.rows})
+    res.render('posts', {postsData: data.rows})
  })
+}
+
+exports.getPostAll = (req,res,next) => {
+  
 }

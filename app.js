@@ -8,7 +8,8 @@ var logger = require('morgan');
 //routes folder import
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var postsRouter = require('./routes/posts')
+var postsRouter = require('./routes/posts');
+var profileRouter = require('./routes/profile');
 
 
 var exphbs  = require('express-handlebars');
@@ -33,6 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/posts',postsRouter);
+app.use('/profile',profileRouter);
 
 
 
