@@ -5,7 +5,7 @@ exports.up = function(knex) {
     table.string("body",250).notNullable();
     table.integer("created_by").unsigned().notNullable();
     table.foreign("created_by").references("users.user_id");
-    table.integer("posted_to").unsigned();
+    table.integer("posted_to").unsigned().notNullable();
     table.foreign("posted_to").references("profiles.profile_id")
 
   });

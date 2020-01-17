@@ -15,7 +15,7 @@ module.exports = {
   production: {
     client: 'pg',
     connection: {
-      database: 'name_of_database',
+      database: 'socialspark',
       user:     'username',
       password: 'password'
     }
