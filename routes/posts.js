@@ -8,6 +8,7 @@ const postService = require('../services/posts-services')
 
 router.get('/', postService.getPostById)
 
+// router.get('/',)
 //create posts
 
 //delete posts (:/id)
