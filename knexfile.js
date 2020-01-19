@@ -5,6 +5,7 @@ module.exports = {
 
   development: {
     client: 'pg',
+    'debug': true,
     connection: {
       database: process.env.DB_NAME,
       user:     process.env.DB_USERNAME,
@@ -15,7 +16,7 @@ module.exports = {
   production: {
     client: 'pg',
     connection: {
-      database: 'socialspark',
+      database: 'toku',
       user:     'username',
       password: 'password'
     }

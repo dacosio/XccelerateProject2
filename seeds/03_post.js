@@ -5,8 +5,8 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('posts').insert([
-        {body:"Examination fever..2 days to go",created_by:1,posted_to:2},
-        {body:"Holidayssss..",created_by:3,posted_to:1}
+        {body:"Happy Friyay!",created_by:1,posted_to:2},
+        {body:"Everyone seems to fall in love and I'm here can't even fall asleep",created_by:3,posted_to:1}
       ]);
     });
 };

@@ -6,7 +6,9 @@ exports.up = function(knex) {
     table.integer("created_by").unsigned().notNullable();
     table.foreign("created_by").references("users.user_id");
     table.integer("posted_to").unsigned().notNullable();
-    table.foreign("posted_to").references("profiles.profile_id")
+    table.foreign("posted_to").references("users.user_id");
+    table.timestamp('created_at').defaultTo(knex.fn.now());
+    table.timestamp('updated_at').defaultTo(knex.fn.now());
 
   });
 };
