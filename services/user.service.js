@@ -29,7 +29,7 @@ class UserService {
     }
 
     delete(id) {
-        return knex('posts')
+        return knex('users')
             .where('user_id', '=', id)
             .del();
     }
