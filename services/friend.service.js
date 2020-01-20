@@ -23,6 +23,7 @@ class FriendService {
     }
 
     update(id,obj){
+        obj.updated_at = knex.fn.now()
         return knex('friends')
             .where('friends_id', '=', id)
             .update(obj);

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const FriendService = require('../services/friend.service')
+const FriendService = require('../../services/friend.service')
 
 const friendService = new FriendService();
 
@@ -15,7 +15,7 @@ router.get('/', function(req,res,next){
 //get a specific friend
 router.get('/:id', function(req,res,next){
     friendService
-        .get(req.params.id,)
+        .get(req.params.id)
         .then(friend => res.json(friend));
 })
 
@@ -23,7 +23,8 @@ router.get('/:id', function(req,res,next){
 router.post('/', function(req,res,next) {
     let friend = {
         user_1: req.body.user_1,
-        user_2: req.body.user_2
+        user_2: req.body.user_2,
+        isAccepted: false
     };
     friendService
         .create(friend)
@@ -36,7 +37,8 @@ router.post('/', function(req,res,next) {
 router.put('/:id', function(req, res, next){
     let friend = {
         user_1: req.body.user_1,
-        user_2: req.body.user_2
+        user_2: req.body.user_2,
+        isAccepted: req.body.isAccepted == "1"
     };
     friendService
         .update(req.params.id, post)

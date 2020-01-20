@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const CommentService = require('../services/comment.service');
+const CommentService = require('../../services/comment.service');
 
 const commentService = new CommentService();
 

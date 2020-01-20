@@ -1,19 +1,22 @@
 var express = require('express');
 var router = express.Router();
-const knex = require('../database/knex')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  knex('posts').select()
-    .then(data => {
-      console.log(data)
-    //   res.render('index', {posts: data})
-    res.send('hello')
-    })
+  
+    res.render('login')
+});
 
+router.post('/login', function(req,res,next){
+  res.redirect('feed')
 });
 
 
+
+//FEED
+router.get('/feed', function (req,res,next) {
+  res.render('feed')  
+})
 
 
 //friends -> friend's post -> post's comments

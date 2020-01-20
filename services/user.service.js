@@ -13,7 +13,7 @@ class UserService {
             .where({
                 user_id : id
             })
-            .select('*');
+            .select();
     }
 
     create(obj) {
@@ -23,6 +23,7 @@ class UserService {
     }
 
     update(id, obj) {
+        obj.updated_at = knex.fn.now()
         return knex('users')
             .where('user_id', '=', id)
             .update(obj);

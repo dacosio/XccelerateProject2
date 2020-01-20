@@ -7,10 +7,10 @@ var logger = require('morgan');
 
 //routes folder import
 var indexRouter = require('./routes/index');
-var postsRouter = require('./routes/posts');
-var commentsRouter = require('./routes/comments');
-var friendsRouter = require('./routes/friends');
-var usersRouter = require('./routes/users');
+var postsRouter = require('./routes/api/posts');
+var commentsRouter = require('./routes/api/comments');
+var friendsRouter = require('./routes/api/friends');
+var usersRouter = require('./routes/api/users');
 
 
 

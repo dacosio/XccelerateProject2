@@ -4,7 +4,7 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('friends').insert([
-        {user_1:1,user_2:2},
+        {user_1:1,user_2:2, isAccepted:0},
       ]);
     });
 };

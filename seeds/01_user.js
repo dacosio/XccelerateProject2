@@ -2,7 +2,6 @@ exports.seed = function(knex) {
   // Deletes ALL existing entries
   return knex('users').del()
     .then(function () {
-      console.log('running first seed?')
       // Inserts seed entries
       return knex('users').insert([
         {first_name:'Tim',last_name:'Bill',email:'tim@abc.com',user_name:'tim',password:'abcd',profile_name:'Tom',address:'XY Street',city:'Hong Kong',

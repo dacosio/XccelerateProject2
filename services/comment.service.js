@@ -13,7 +13,7 @@ class CommentService {
             .where({
                 comment_id : id
             })
-            .select('*');
+            .select();
     }
 
     create(obj) {
@@ -23,6 +23,7 @@ class CommentService {
     }
 
     update(id,obj) {
+        obj.updated_at = knex.fn.now()
         return knex('comments')
             .where('comment_id','=',id)
             .update(obj);
