@@ -48,16 +48,37 @@ function getPosts() {
         });
 }
 
-
-
-
 function renderPosts(posts) {
     if(!posts || posts.length < 1)
         return;
 
     //clear posts
     $("#feeds").html("");
+    posts.sort(function(a,b){
+        // Turn your strings into dates, and then subtract them
+        // to get a value that is either negative, positive, or zero.
+        return new Date(b.created_at) - new Date(a.created_at);
+      });
     posts.forEach(function(post){
         $("#feeds").append(generatePost(post));
     });
+}
+
+function createPost() {
+    //todo replace created_by and posted_to
+    var post = {
+        description: $("#message").val().trim(),
+        created_by: 1,
+        posted_to: 1
+    };
+
+    axios.post('/api/posts', post)
+      .then(function (response) {
+        console.log(response);
+        getPosts();
+        $("#message").val("");
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
 }

@@ -3,16 +3,17 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const session = require('express-session');
+const setupPassport = require('./passport');
 
 
 //routes folder import
+var authRouter = require('./routes/auth');
 var indexRouter = require('./routes/index');
 var postsRouter = require('./routes/api/posts');
 var commentsRouter = require('./routes/api/comments');
 var friendsRouter = require('./routes/api/friends');
 var usersRouter = require('./routes/api/users');
-
-
 
 var exphbs  = require('express-handlebars');
 
@@ -22,18 +23,23 @@ var app = express();
 app.engine('.hbs', exphbs({extname: '.hbs'}));
 app.set('view engine', '.hbs');
 
-// app.engine('handlebars', handlebars({defaultLayout: 'main'}))
-// app.set('view engine', 'handlebars');
+//authentication setup
+app.use(session({
+  secret: 'supersecret',
+  resave: false,
+  saveUninitialized: true,
+}));
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+setupPassport(app);
 
 //router from routes folder
 app.use('/', indexRouter);
+app.use('/auth', authRouter);
 app.use('/api/posts',postsRouter);
 app.use('/api/comments',commentsRouter);
 app.use('/api/friends',friendsRouter);
