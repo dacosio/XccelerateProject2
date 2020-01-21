@@ -4,6 +4,7 @@ const FriendService = require('../../services/friend.service')
 
 const friendService = new FriendService();
 
+/********** These are all mounted to /api/friends *********/
 
 //get all friends
 router.get('/', function(req,res,next){

@@ -4,6 +4,7 @@ const CommentService = require('../../services/comment.service');
 
 const commentService = new CommentService();
 
+/********** These are all mounted to /api/comments *********/
 
 //get all comments
 router.get('/', function(req,res,next) {
