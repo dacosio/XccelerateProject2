@@ -12,18 +12,20 @@
 </head>
 
 <body onload="init()">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <div>
+    <nav class="navbar navbar-light bg-white">
+        
     <a href="#" class="navbar-brand" id="heading">Social Spark</a>
-    </div>
     
-    
-    <div id="search-bar">
-        <form class="form-inline ml-auto">
-            <input type="text" class="form-control mr-sm-2" placeholder="Search">
-            <button type="submit" class="btn btn-outline-light">Search</button>
+    <form class="form-inline">
+            <div class="input-group">
+                <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-primary" type="button" id="button-addon2">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
         </form>
-    </div>
 </nav>
 
     <div class="container-fluid gedf-wrapper">
@@ -96,7 +98,7 @@
                 <div id="feeds"></div>
                 <!-- Feed /////-->
             </div>
-
+                {{!-- Right side card --}}
             <div class="col-md-3">
                 <div class="card gedf-card">
                     <div class="card-body">
@@ -109,14 +111,12 @@
                                         <img class="rounded-circle" width="25" src="https://picsum.photos/50/50" alt="">
                                         </a>
                                 </div>
-                                {{!-- <div class="ml-2">
-                                    <div class="m-1"><a href="#">{{user_2.profile_name}}</a></div>
-                                </div> --}}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            {{!-- Right side card --}}
         </div>
     </div>
 
