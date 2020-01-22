@@ -4,6 +4,8 @@ const PostService = require('../../services/post.service');
 
 const postService = new PostService();
 
+/********** These are all mounted to /api/posts *********/
+
 //get all posts
 router.get('/', function(req, res, next){
     postService
@@ -11,11 +13,14 @@ router.get('/', function(req, res, next){
         .then(posts => res.json(posts));
 });
 
-router.get('/getFormatted', function(req, res, next){
 
+//get all posts on feed
+router.get('/getFormatted', function(req, res, next){
     postService
         .getAllFormatted()
-        .then(posts => res.json(posts.rows));
+        // .then(posts => res.json(posts.rows));
+        .then(posts => res.json(posts));
+
 });
 
 //get a specific post

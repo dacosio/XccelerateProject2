@@ -4,6 +4,8 @@ const UserService = require('../../services/user.service');
 
 const userService = new UserService();
 
+/********** These are all mounted to /api/users *********/
+
 //get all user
 router.get('/', function(req, res, next){
     userService
