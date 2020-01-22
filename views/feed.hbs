@@ -3,23 +3,35 @@
 
 <head>
     <meta charset="utf-8">
+    <link rel="shortcut icon" href="/favicon.ico" />
     <title>Social Spark</title>
+    
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
         id="bootstrap-css">
     <link rel="stylesheet" href="./stylesheets/style.css">
 </head>
 
 <body onload="init()">
-    <nav class="navbar navbar-light bg-white">
-        <a href="#" class="navbar-brand" id="home1">Social Spark</a>
-    </nav>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div>
+    <a href="#" class="navbar-brand" id="heading">Social Spark</a>
+    </div>
+    
+    
+    <div id="search-bar">
+        <form class="form-inline ml-auto">
+            <input type="text" class="form-control mr-sm-2" placeholder="Search">
+            <button type="submit" class="btn btn-outline-light">Search</button>
+        </form>
+    </div>
+</nav>
 
     <div class="container-fluid gedf-wrapper">
         <div class="row">
             <div class="col-md-3">
                 <div class="card">
                     <div class="card-body">
-                        <div class="h5">@{{user_name}}</div>
+                        <div class="h5"><a href="#">@{{user_name}}</a></div>
                         <div class="h7 text-muted">Name: {{profile_name}}</div>
                         <div class="h7 text-muted">Bio: {{bio}}</div>
                     </div>

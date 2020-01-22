@@ -10,14 +10,21 @@
     background: linear-gradient(to right, #0062E6, #33AEFF);
   }
 
-  h1 {
+  #heading {
     font-family: 'Sacramento';
     font-size: 48px;
     color: white;
     text-align: center;
-    margin-top: 30px;
+    margin-top: 0px;
     font-weight: bold;
   }
+
+  #search-bar {
+    /* padding-top: 20px; */
+    margin-left: 850px;
+    margin-top: 0px;
+  }
+
   
   #home1 {
     font-family: 'Sacramento';
@@ -36,6 +43,10 @@
     background: linear-gradient(to right, #0062E6, #33AEFF);
   }
 
+  .my-nav {
+    display:flex;
+    justify-content: space-between;
+  }
   .card {
     margin-bottom: 5px;
   }
