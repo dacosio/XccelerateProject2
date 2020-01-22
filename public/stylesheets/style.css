@@ -10,6 +10,16 @@
     background: linear-gradient(to right, #0062E6, #33AEFF);
   }
 
+  @media (max-width: 992px) {
+    .gedf-main {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .gedf-card {
+        margin-bottom: 2.77rem;
+    }
+  }
+
   #heading {
     font-family: 'Sacramento';
     font-size: 48px;
@@ -19,13 +29,6 @@
     font-weight: bold;
   }
 
-  #search-bar {
-    /* padding-top: 20px; */
-    margin-left: 850px;
-    margin-top: 0px;
-  }
-
-  
   #home1 {
     font-family: 'Sacramento';
     font-size: 30px;

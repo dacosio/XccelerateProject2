@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <title>Social Spark</title>
+    <script src="https://kit.fontawesome.com/ad8ad4f1d7.js" crossorigin="anonymous"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="./public/stylesheets/style.css">
+</head>
+
+<body onload="init()">
+    <nav class="navbar navbar-light bg-white">
+        
+    <a href="#" class="navbar-brand" id="heading">Social Spark</a>
+    
+    <form class="form-inline">
+            <div class="input-group">
+                <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-primary" type="button" id="button-addon2">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+</nav>
+<div class="container-fluid gedf-wrapper">
+    <div class="row">
+        <div class="col-md-2">
+        </div>    
+                <!-- Middle column -->
+                <div class="col-md-5 gedf-main">
+                <div class="card gedf-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Profile</h5>
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="mr-2">
+                                        <img class="rounded" width="150" height="150" src="https://picsum.photos/150/150" alt="">
+                                </div>
+                                <div class="ml-2">
+                                    <div class="h7 text-muted">@${user.user_name}</div>
+                                    <div class="h5 m-0">${user.firstname1 + ' ' + user.lastname1}</div>
+                                    <div class="h7">Location - ${user.city}</div>
+                                    <div class="h7">Joined ${user.created_at}</div>
+                                    <div class="h7">${user.bio}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal posts to own wall -->
+                <div class="card gedf-card">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="mr-2">
+                                    <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+                                </div>
+                                <div class="ml-2">
+                                    <div class="h5 m-0">${user.firstname1 + ' ' + user.lastname1} (personal post to own wall)</div>
+                                </div>
+                            </div>
+                        <div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>&nbsp;${created_at.fromNow()}</div>
+                        <p class="card-text">${post.body}</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="card-link"><i class="fas fa-heart"></i> Like</a>
+                        <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
+                    </div>
+                </div>
+                 <!-- Personal posts to own wall -->
+            </div>
+            <!-- Middle column -->
+
+            <!-- Friends column -->
+            <div class="col-md-3">
+                <div class="card gedf-card">
+                    <div class="card-body">
+                        <h5 class="card-subtitle">Friends</h5>
+                        <h7 class="card-title text-muted">{{user_friendship_count}}</h7>
+                        <div class="d-flex justify-content-between align-items-center card-text">
+                            <div class="mr-2">
+                                <a href="#">
+                                    <img class="rounded-circle" width="25" src="https://picsum.photos/50/50" alt="">
+                                    {{user_2.profile_name}}
+                                </a>
+                                <a id="unfriend" href="#">
+                                    <i class="fas fa-user-slash"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center card-text">
+                            <div class="mr-2">
+                                <a href="#">
+                                    <img class="rounded-circle" width="25" src="https://picsum.photos/50/50" alt="">
+                                    {{user_3.profile_name}}
+                                </a>
+                                <a id="unfriend" href="#">
+                                    <i class="fas fa-user-slash"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center card-text">
+                            <div class="mr-2">
+                                <a href="#">
+                                    <img class="rounded-circle" width="25" src="https://picsum.photos/50/50" alt="">
+                                    {{user_4.profile_name}}
+                                </a>
+                                <a id="unfriend" href="#">
+                                    <i class="fas fa-user-slash"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Friends column -->
+    <div class="col-md-2">
+    </div>
+</div>
+</div>
+    
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+    </script>
+    
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="./javascripts/feed.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    
+    <!-- {{!-- <script type=text/javascript>
+        $(document).ready(function(){
+            init();
+        });
+    </script> --}} -->
+</body>
+
+</html>
+
+
+
+
