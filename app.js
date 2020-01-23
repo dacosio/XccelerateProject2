@@ -10,6 +10,7 @@ const setupPassport = require('./passport');
 //routes folder import
 var authRouter = require('./routes/auth');
 var indexRouter = require('./routes/index');
+var profileRouter = require('./routes/profile');
 var postsRouter = require('./routes/api/posts');
 var commentsRouter = require('./routes/api/comments');
 var friendsRouter = require('./routes/api/friends');
@@ -40,6 +41,7 @@ setupPassport(app);
 //router from routes folder
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
+app.use('/profile', profileRouter);
 app.use('/api/posts',postsRouter);
 app.use('/api/comments',commentsRouter);
 app.use('/api/friends',friendsRouter);

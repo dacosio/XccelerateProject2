@@ -20,6 +20,13 @@ router.get('/:id', function(req,res,next){
         .then(friend => res.json(friend));
 })
 
+//get all friends
+router.get('/getAllFriends/:id', function(req,res,next) {
+    friendService
+        .getFriends(req.params.id)
+        .then(friends => res.json(friends.rows));
+})
+
 //create friend
 router.post('/', function(req,res,next) {
     let friend = {

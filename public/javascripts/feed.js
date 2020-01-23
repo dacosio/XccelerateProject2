@@ -10,7 +10,6 @@ function generatePost(post) {
                     <div class="ml-2">
                         <div class="h5 m-0">@${post.firstname1 + ' ' + post.lastname1} --> @${post.firstname2 + ' ' + post.lastname2}</div>
                         <div class="h7 text-muted">${post.user_name}</div>
-                    </div>
                 </div>
             <div>
 
@@ -39,27 +38,27 @@ function init() {
 function getPosts() {
     axios
         .get('/api/posts/getFormatted')
-        .then(function(result) {
+        .then(function (result) {
             // console.log(result);
             renderPosts(result.data);
         })
-        .catch(function(error){
+        .catch(function (error) {
             console.log(error);
         });
 }
 
 function renderPosts(posts) {
-    if(!posts || posts.length < 1)
+    if (!posts || posts.length < 1)
         return;
 
     //clear posts
     $("#feeds").html("");
-    posts.sort(function(a,b){
+    posts.sort(function (a, b) {
         // Turn your strings into dates, and then subtract them
         // to get a value that is either negative, positive, or zero.
         return new Date(b.created_at) - new Date(a.created_at);
-      });
-    posts.forEach(function(post){
+    });
+    posts.forEach(function (post) {
         $("#feeds").append(generatePost(post));
     });
 }
@@ -69,16 +68,33 @@ function createPost() {
     var post = {
         description: $("#message").val().trim(),
         created_by: 1,
-        posted_to: 1
+        posted_to: 2
     };
 
     axios.post('/api/posts', post)
-      .then(function (response) {
-        console.log(response);
-        getPosts();
-        $("#message").val("");
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+        .then(function (response) {
+            console.log(response);
+            getPosts();
+            $("#message").val("");
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+}
+
+function updatePost() {
+    var post = {
+        description: $("#message").val().trim(),
+        created_by: req.params.id,
+        posted_to: 2
+    };
+
+    axios.patch('/api/posts/getFormatted',post)
+        .then(function (response) {
+            console.log(response);
+            
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 }

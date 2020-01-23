@@ -14,6 +14,7 @@ router.get('/', function(req, res, next){
 });
 
 
+
 //get all posts on feed
 router.get('/getFormatted', function(req, res, next){
     postService

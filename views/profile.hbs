@@ -1,119 +1,95 @@
-<body onload="init()">
-    <nav class="navbar navbar-light bg-white">
-        
-    <a href="#" class="navbar-brand" id="heading">Social Spark</a>
-    
-    <form class="form-inline">
-            <div class="input-group">
-                <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-primary" type="button" id="button-addon2">
-                        <i class="fa fa-search"></i>
-                    </button>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="/javascripts/profile.js"></script>
+
+    <body onload="init()">
+        <nav class="navbar navbar-light bg-white">
+
+            <a href="#" class="navbar-brand" id="heading">Social Spark</a>
+
+            <form class="form-inline">
+                <div class="input-group">
+                    <input type="text" class="form-control" aria-label="Recipient's username"
+                        aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="button" id="button-addon2">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
                 </div>
-            </div>
-        </form>
-</nav>
-<div class="container-fluid gedf-wrapper">
-    <div class="row">
-        <div class="col-md-2">
-        </div>    
+            </form>
+        </nav>
+        <div class="container-fluid gedf-wrapper">
+            <div class="row">
+                <div class="col-md-2">
+                </div>
                 <!-- Middle column -->
                 <div class="col-md-5 gedf-main">
-                <div class="card gedf-card">
-                    <div class="card-body">
-                        <h5 class="card-title">Profile</h5>
+                    <div class="card gedf-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Profile</h5>
 
-                        <div class="d-flex justify-content-between align-items-center">
                             <div class="d-flex justify-content-between align-items-center">
-                                <div class="mr-2">
-                                        <img class="rounded" width="150" height="150" src="https://picsum.photos/150/150" alt="">
-                                </div>
-                                <div class="ml-2">
-                                    <div class="h7 text-muted">@${user.user_name}</div>
-                                    <div class="h5 m-0">${user.firstname1 + ' ' + user.lastname1}</div>
-                                    <div class="h7">Location - ${user.city}</div>
-                                    <div class="h7">Joined ${user.created_at}</div>
-                                    <div class="h7">${user.bio}</div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="mr-2">
+                                        <img class="rounded" width="150" height="150"
+                                            src="https://picsum.photos/150/150" alt="">
+                                    </div>
+                                    <div class="ml-2">
+                                        <div class="h7 text-muted">{{first_name}}</div>
+                                        <div class="h5 m-0">{{first_name}}&nbsp; {{last_name}}</div>
+                                        <div class="h7">Location - {{city}}</div>
+                                        <div class="h7">Joined {{created_at}}</div>
+                                        <div class="h7">{{bio}}</div>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Personal posts to own wall -->
+                    <div class="card gedf-card">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="mr-2">
+                                        <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+                                    </div>
+                                    <div class="ml-2">
+                                        <div class="h5 m-0">${user.firstname1 + ' ' + user.lastname1} (personal post to
+                                            own
+                                            wall)</div>
+                                    </div>
+                                </div>
+                                <div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>&nbsp;${created_at.fromNow()}
+                            </div>
+                            <p class="card-text">${post.body}</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="card-link"><i class="fas fa-heart"></i> Like</a>
+                            <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
+                        </div>
+                    </div>
+                    <!-- Personal posts to own wall -->
+                </div>
+                <!-- Middle column -->
+
+                <!-- Friends column -->
+                <div class="col-md-3">
+                    <div class="card gedf-card">
+                        <div class="card-body" >
+                            <h5 class="card-subtitle">Friends</h5>
+                            <h7 class="card-title text-muted">{{user_friendship_count}}</h7>
+                            <div id="friendbody"></div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Personal posts to own wall -->
-                <div class="card gedf-card">
-                    <div class="card-header">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="mr-2">
-                                    <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
-                                </div>
-                                <div class="ml-2">
-                                    <div class="h5 m-0">${user.firstname1 + ' ' + user.lastname1} (personal post to own wall)</div>
-                                </div>
-                            </div>
-                        <div>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>&nbsp;${created_at.fromNow()}</div>
-                        <p class="card-text">${post.body}</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="card-link"><i class="fas fa-heart"></i> Like</a>
-                        <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
-                    </div>
-                </div>
-                 <!-- Personal posts to own wall -->
-            </div>
-            <!-- Middle column -->
-
-            <!-- Friends column -->
-            <div class="col-md-3">
-                <div class="card gedf-card">
-                    <div class="card-body">
-                        <h5 class="card-subtitle">Friends</h5>
-                        <h7 class="card-title text-muted">{{user_friendship_count}}</h7>
-                        <div class="d-flex justify-content-between align-items-center card-text">
-                            <div class="mr-2">
-                                <a href="#">
-                                    <img class="rounded-circle" width="25" src="https://picsum.photos/50/50" alt="">
-                                    {{user_2.profile_name}}
-                                </a>
-                                <a id="unfriend" href="#">
-                                    <i class="fas fa-user-slash"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center card-text">
-                            <div class="mr-2">
-                                <a href="#">
-                                    <img class="rounded-circle" width="25" src="https://picsum.photos/50/50" alt="">
-                                    {{user_3.profile_name}}
-                                </a>
-                                <a id="unfriend" href="#">
-                                    <i class="fas fa-user-slash"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center card-text">
-                            <div class="mr-2">
-                                <a href="#">
-                                    <img class="rounded-circle" width="25" src="https://picsum.photos/50/50" alt="">
-                                    {{user_4.profile_name}}
-                                </a>
-                                <a id="unfriend" href="#">
-                                    <i class="fas fa-user-slash"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Friends column -->
+                <div class="col-md-2">
                 </div>
             </div>
-            <!-- Friends column -->
-    <div class="col-md-2">
-    </div>
-</div>
-</div>
+        </div>
