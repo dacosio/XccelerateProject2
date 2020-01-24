@@ -16,17 +16,23 @@ class UserService {
             .select();
     }
 
-    create(obj) {
+    getOneByEmail(email) {
         return knex('users')
-            .returning('user_id')
-            .insert(obj);
+            .where('email', '=', email)
+            .first()
     }
 
-    update(id, obj) {
-        obj.updated_at = knex.fn.now()
+    create(user) {
+        return knex('users')
+            .insert(user)
+            .returning('user_id');
+    }
+
+    update(id, user) {
+        user.updated_at = knex.fn.now()
         return knex('users')
             .where('user_id', '=', id)
-            .update(obj);
+            .update(user);
     }
 
     delete(id) {

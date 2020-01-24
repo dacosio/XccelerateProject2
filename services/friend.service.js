@@ -27,6 +27,15 @@ class FriendService {
                 and (f.user_1 = ${id} or f.user_2 = ${id})`;
 
         return knex.raw(sql)
+        
+        // return knex
+        //     .select('f.friends_id','f.user_1','u.first_name AS firstname1','u.last_name AS lastname1','u2.first_name AS firstname2','u2.last_name AS lastname2')
+        //     .from('friends AS f')
+        //     .innerJoin('users AS u', 'f.user_1','u.user_id')
+        //     .innerJoin('users AS u2', 'f.user_2','u2.user_id')
+        //     .where('f.isAccepted','=','true')
+        //     .andWhere('f.user_1',`${id}`)
+        //     .orWhere(`f.user_2`,`${id}`)
     }
 
     get(id){
