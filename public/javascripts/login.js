@@ -1,29 +1,34 @@
-$(()=> {
-    $("#login").submit((event)=>{
-        event.preventDefault();
-        const email = $('#email').val();
-        const password = $('#password').val();
+// // console.log(API_URL)
+
+// $(()=> {
+//     $("#login").submit((event)=>{
+//         // event.preventDefault();
+//         const email = $('#email').val();
+//         const password = $('#password').val();
         
-        const user = {
-            email,
-            password
-        };
+//         const user = {
+//             email,
+//             password
+//         };
 
-        login(user)
-            .then((result) => {
-                console.log(result);
+//         console.log(user);
+        
+//         login(user)
+//             .then((result) => {
+//                 console.log(result); 
                 
-            }).catch((err) => {
-                console.error(error)
-                const $errorMessage = $('#errorMessage');
-                $errorMessage.text(error.responseJSON.message);
-                $errorMessage.show();
+//             }).catch((err) => {
+//                 console.error(error)
+//                 const $errorMessage = $('#errorMessage');
+//                 $errorMessage.text(error.responseJSON.message);
+//                 $errorMessage.show();
                 
-            });
-    })    
-})
+//             });
+//     })    
+// })
 
 
-function login(user){
-    return $.post('localhost:5000/auth/login', user)
-}
+// function login(user){
+//     console.log(req.body);
+// }
+

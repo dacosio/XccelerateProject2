@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
+/* GET home/login page. */
 router.get('/', function (req, res, next) {
   res.redirect('/auth/login')
 });
@@ -16,7 +16,7 @@ router.get('/feed', function (req, res, next) {
 })
 
 //GET Sign up page
-router.get('/signup', function(req,res,next){
+router.get('/auth/signup', function(req,res,next){
   res.render('signup')
 })
 

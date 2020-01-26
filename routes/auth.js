@@ -46,11 +46,11 @@ const userService = new UserService()
 /*Route paths are prepended with /auth*/
 
 //Signup page
-router.get('/', function (req, res, next) {
-    res.json({
-        message: 'signup page'
-    });
-});
+// router.get('/signup', function (req, res, next) {
+//     res.json({
+//         message: 'signup page'
+//     });
+// });
 
 function validUser(user) {
     const validEmail = typeof user.email == 'string' &&
@@ -111,6 +111,9 @@ router.post('/signup', (req, res, next) => {
     }
 })
 
+
+
+/*Log iN*/
 router.post('/login', (req, res, next) => {
     if (validUser(req.body)) {
         //check to see if in DB
@@ -132,9 +135,10 @@ router.post('/login', (req, res, next) => {
                                     secure: isSecure,
                                     signed: true
                                 })
-                                res.json({
-                                    message: 'Logged In!'
-                                })
+                                // res.json({
+                                //     message: 'Logged In!'
+                                // })
+                                 res.render('feed')
                             }
                             else {
                                 next(new Error('Invalid Login'))

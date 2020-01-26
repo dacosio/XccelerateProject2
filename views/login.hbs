@@ -25,7 +25,7 @@
           <div class="card-body">
             <h5 class="card-title text-center">Login</h5>
             <div class="alert alert-danger" role="alert" id="errorMessage" style="display:none"></div>
-            <form class="form-signin" id="login" >
+            <form class="form-signin" id="login" action="/auth/login" method="POST" >
               <div class="form-label-group">
                 <input type="email" id="email" class="form-control" name="email" placeholder="Email address" required>
                 <label for="email">Email address</label>
@@ -39,9 +39,9 @@
               <br>
               <hr class="my-4">
 
-              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" onclick="login()">Sign in</button>
               <div class="form-footer">
-                Don't have an account? <a href="signup.html">Sign Up</a>
+                Don't have an account? <a href="/auth/signup">Sign Up</a>
               </div>
 
             </form>
@@ -57,7 +57,8 @@
   </script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
-  <script src="/javascripts/login.js"></script>
+  {{!-- <script src="../public/javascripts/localhost.js"></script> --}}
+  <script src="../public/javascripts/login.js"></script>
 </body>
 
 </html>
