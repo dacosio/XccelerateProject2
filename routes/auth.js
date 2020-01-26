@@ -90,21 +90,18 @@ router.post('/signup', (req, res, next) => {
                                 })
                                 .then(id => {
                                     //redirect
-                                    res.json({
-                                        id,
-                                        message: 'successful registration'
-                                    })
+                                    // res.json({
+                                    //     id,
+                                    //     message: 'successful registration'
+                                    // })
+                                    res.render('login')
 
                                 })
-
                         });
-
-
                 } else {
                     //email already in use!
                     next(new Error('email already in use'))
                 }
-
             })
     } else {
         next(new Error('Invalid User'))
