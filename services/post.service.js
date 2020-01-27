@@ -31,6 +31,15 @@ class PostService {
 
     }
 
+    getPostsByUser(id){
+        return knex
+            .select('p.post_id', 'u.user_name', 'p.description', 'p.created_at', 'p.created_by AS created_id', 'u.first_name AS firstname1', 'u.last_name AS lastname1', 'u2.first_name AS firstname2', 'u2.last_name AS lastname2')
+            .from('posts as p')
+            .innerJoin('users AS u', 'p.created_by', 'u.user_id')
+            .innerJoin('users AS u2', 'p.posted_to', 'u2.user_id')
+            .where('p.created_by','=',id);
+    }
+
     get(id) {
         return knex('posts')
             .where({

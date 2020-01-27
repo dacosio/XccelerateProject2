@@ -16,6 +16,18 @@ class UserService {
             .select();
     }
 
+    getAllExceptUser(id) {
+        return knex('users')
+            .where('user_id','!=',id)
+            .select('user_id','first_name', 'last_name')
+    }
+
+    searchUser(name){
+        return knex('users')
+            .whereRaw('LOWER(first_name) LIKE ? OR LOWER(last_name) LIKE ?',[name.toLowerCase()+"%", name.toLowerCase()+"%"])
+            .select('user_id','first_name', 'last_name')
+    }
+
     getOneByEmail(email) {
         return knex('users')
             .where('email', '=', email)

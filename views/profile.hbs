@@ -8,8 +8,7 @@
 
             <form class="form-inline">
                 <div class="input-group">
-                    <input type="text" class="form-control" aria-label="Recipient's username"
-                        aria-describedby="button-addon2">
+                    <input type="text" class="form-control" id="searchUser" autocomplete="off">
                     <div class="input-group-append">
                         <button class="btn btn-outline-primary" type="button" id="button-addon2">
                             <i class="fa fa-search"></i>
@@ -40,6 +39,9 @@
                                         <div class="h7">Location - {{city}}</div>
                                         <div class="h7">Joined {{created_at}}</div>
                                         <div class="h7">{{bio}}</div>
+                                        <button> Add friend</button> <!--todo-->
+                                        <button> Remove friend</button> <!--todo-->
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -47,6 +49,7 @@
                     </div>
 
                     <!-- Personal posts to own wall -->
+                    {{#each posts}}
                     <div class="card gedf-card">
                         <div class="card-header">
                             <div class="d-flex justify-content-between align-items-center">
@@ -55,9 +58,9 @@
                                         <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
                                     </div>
                                     <div class="ml-2">
-                                        <div class="h5 m-0">${user.firstname1 + ' ' + user.lastname1} (personal post to
-                                            own
-                                            wall)</div>
+                                        <div class="h5 m-0">{{firstname1}} {{lastname1}} --> {{firstname2}} {{lastname2}} 
+                                        
+                                        </div>
                                     </div>
                                 </div>
                                 <div>
@@ -65,15 +68,16 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>&nbsp;${created_at.fromNow()}
+                            <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>&nbsp;{{created_at}}
                             </div>
-                            <p class="card-text">${post.body}</p>
+                            <p class="card-text">{{description}}</p>
                         </div>
                         <div class="card-footer">
                             <a href="#" class="card-link"><i class="fas fa-heart"></i> Like</a>
                             <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
                         </div>
                     </div>
+                    {{/each}}
                     <!-- Personal posts to own wall -->
                 </div>
                 <!-- Middle column -->
@@ -84,7 +88,11 @@
                         <div class="card-body" >
                             <h5 class="card-subtitle">Friends</h5>
                             <h7 class="card-title text-muted">{{user_friendship_count}}</h7>
-                            <div id="friendbody"></div>
+                            <ul id="friendbody">
+                                {{#each friends}}
+                                    <li><a href="/profile/{{id}}">{{name}}</a></li>
+                                {{/each}}
+                            </ul>
                         </div>
                     </div>
                 </div>

@@ -16,12 +16,32 @@ router.get('/', function(req, res, next){
         });
 });
 
+router.get('/search', function(req, res, next){
+    userService
+        .searchUser(req.query.qry)
+        .then(function(users) {
+            console.log(users);
+            var response = {
+              results: users.map(function(user){
+                return {
+                  id: user.user_id, 
+                  text: user.first_name + " " + user.last_name
+                };
+              })
+            };
+            res.json(response);
+        });
+});
+
 //get a specific post
 router.get('/:id', function(req, res, next){
     userService
         .get(req.params.id)
         .then(user => res.json(user));
 });
+
+
+
 
 //create user
 router.post('/', function(req, res, next){

@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session');
-const setupPassport = require('./passport');
+// const setupPassport = require('./passport');
 
 
 //routes folder import
@@ -25,18 +25,18 @@ app.engine('.hbs', exphbs({extname: '.hbs'}));
 app.set('view engine', '.hbs');
 
 //authentication setup
-app.use(session({
-  secret: 'supersecret',
-  resave: false,
-  saveUninitialized: true,
-}));
+// app.use(session({
+//   secret: 'supersecret',
+//   resave: false,
+//   saveUninitialized: true,
+// }));
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(express.static(path.join(__dirname, 'public')));
-setupPassport(app);
+// setupPassport(app);
 
 //router from routes folder
 app.use('/', indexRouter);
