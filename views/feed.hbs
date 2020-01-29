@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <link rel="shortcut icon" href="/favicon.ico" />
     <title>Social Spark</title>
-    
+
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
         id="bootstrap-css">
     <link rel="stylesheet" href="./stylesheets/style.css">
@@ -13,12 +13,15 @@
 
 <body onload="init()">
     <nav class="navbar navbar-light bg-white">
-        
-    <a href="#" class="navbar-brand" id="heading">Social Spark</a>
-    
-    <form class="form-inline">
+
+        <a href="#" class="navbar-brand" id="heading">Social Spark</a>
+
+        <form class="form-inline">
+            <input type="text" class="form-control" id="searchUser" autocomplete="off">
+
             <div class="input-group">
-                <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <input type="text" class="form-control" aria-label="Recipient's username"
+                    aria-describedby="button-addon2">
                 <div class="input-group-append">
                     <button class="btn btn-outline-primary" type="button" id="button-addon2">
                         <i class="fa fa-search"></i>
@@ -26,7 +29,7 @@
                 </div>
             </div>
         </form>
-</nav>
+    </nav>
 
     <div class="container-fluid gedf-wrapper">
         <div class="row">
@@ -98,7 +101,7 @@
                 <div id="feeds"></div>
                 <!-- Feed /////-->
             </div>
-                {{!-- Right side card --}}
+            {{!-- Right side card --}}
             <div class="col-md-3">
                 <div class="card gedf-card">
                     <div class="card-body">
@@ -109,7 +112,7 @@
                                 <div class="mr-2">
                                     <a href="#">{{user_2.profile_name}}
                                         <img class="rounded-circle" width="25" src="https://picsum.photos/50/50" alt="">
-                                        </a>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -117,11 +120,13 @@
                 </div>
             </div>
             {{!-- Right side card --}}
+
+            <a href='/auth/logout'>log out?</a>
         </div>
     </div>
 
 
-    
+
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
@@ -135,12 +140,12 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
     </script>
-    
+
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="/javascripts/feed.js"></script>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    
+
     {{!-- <script type=text/javascript>
         $(document).ready(function(){
             init();
