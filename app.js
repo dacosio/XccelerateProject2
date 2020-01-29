@@ -4,7 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session');
-// const setupPassport = require('./passport');
+const setupPassport = require('./passport/passport');
+const isLoggedin = require('./passport/isLoggedin')
 
 
 //routes folder import
@@ -25,23 +26,24 @@ app.engine('.hbs', exphbs({extname: '.hbs'}));
 app.set('view engine', '.hbs');
 
 //authentication setup
-// app.use(session({
-//   secret: 'supersecret',
-//   resave: false,
-//   saveUninitialized: true,
-// }));
+app.use(session({
+  secret: 'superDifficultAndSecret',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: false }
+}))
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser(process.env.COOKIE_SECRET));
+// app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(express.static(path.join(__dirname, 'public')));
-// setupPassport(app);
+setupPassport(app);
 
 //router from routes folder
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
-app.use('/profile', profileRouter);
+app.use('/profile',isLoggedin, profileRouter);
 app.use('/api/posts',postsRouter);
 app.use('/api/comments',commentsRouter);
 app.use('/api/friends',friendsRouter);
@@ -50,9 +52,9 @@ app.use('/api/users',usersRouter);
 app.use('/favicon.ico', express.static('images/favicon.ico'));
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+// app.use(function(req, res, next) {
+//   next(createError(404));
+// });
 
 // error handler
 app.use(function(err, req, res, next) {

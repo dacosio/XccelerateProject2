@@ -35,6 +35,7 @@ class UserService {
     }
 
     create(user) {
+        console.log(user)
         return knex('users')
             .insert(user)
             .returning('user_id');
