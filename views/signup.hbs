@@ -8,7 +8,7 @@
   <title>Social Spark</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-  <link rel="stylesheet" href="../public/stylesheets/signup.css">
+  <link rel="stylesheet" href="/stylesheets/signup.css">
 </head>
 
 <body>
@@ -25,17 +25,18 @@
             <h5 class="card-title text-center">Register</h5>
             <form class="form-signin" action="/auth/signup" method="POST">
               <div class="form-label-group">
+                 <input type="text" id="first_name" name="first_name" class="form-control" placeholder="First Name" required>
                 <label for="first_name">First Name</label>
-                <input type="text" id="first_name" name="first_name" class="form-control" placeholder="Timothy" required autofocus>
+               
               </div>
               <div class="form-label-group">
                 <label for="last_name">Last Name</label>
-                <input type="text" id="last_name" name="last_name" class="form-control" placeholder="Wright" required autofocus>
+                <input type="text" id="last_name" name="last_name" class="form-control" placeholder="Last Name" required autofocus>
               </div>
 
               <div class="form-label-group">
                 <label for="email">Email address</label>
-                <input type="email" id="email" name="email" class="form-control" placeholder="Timoty_Wright@gmail.com" required>
+                <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
               </div>
 
               <hr>
