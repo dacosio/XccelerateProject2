@@ -20,7 +20,7 @@ router.get('/login', function (req, res, next) {
 });
 
 router.get('/auth/login', (req, res, next) => {
-  res.render('login')
+  res.render('login',  {message: req.flash('error')})
 })
 
 //FEED
@@ -125,7 +125,7 @@ router.get('/signup', function(req,res,next) {
 })
 
 router.get('/auth/signup', function (req, res, next) {
-  res.render('signup')
+  res.render('signup', {message: req.flash('error')})
 })
 
 

@@ -1,11 +1,14 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-// var cookieParser = require('cookie-parser');
+var methodOverride = require('method-override');
 var logger = require('morgan');
+const cookieParser = require('cookie-parser')
+const flash = require('connect-flash')
 const session = require('express-session');
 const setupPassport = require('./passport/passport');
 const isLoggedin = require('./passport/isLoggedin')
+
 
 
 //routes folder import
@@ -25,6 +28,8 @@ var app = express();
 app.engine('.hbs', exphbs({extname: '.hbs'}));
 app.set('view engine', '.hbs');
 
+app.use(cookieParser());
+
 //authentication setup
 app.use(session({
   secret: 'superDifficultAndSecret',
@@ -33,11 +38,14 @@ app.use(session({
   cookie: { secure: false }
 }))
 
+app.use(flash());
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-// app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride('_method'));
+
 setupPassport(app);
 
 //router from routes folder

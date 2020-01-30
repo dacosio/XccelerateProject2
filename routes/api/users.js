@@ -62,22 +62,18 @@ router.post('/', function(req, res, next){
         res.render('login')
 });
 
-//update the user
+//update the user profile
 router.put('/:id', function(req, res, next){
     let user = {
       first_name: req.body.first_name,
       last_name: req.body.last_name,
-      email: req.body.email,
-      user_name: req.body.user_name,
-      password: req.body.password,
-      profile_name: req.body.profile_name,
       address: req.body.address,
       city: req.body.city,
       state: req.body.state,
-      zip_code: req.body.zip_code
+      bio :  req.body.bio
     };
     userService
-        .update(req.params.id, user)
+        .update(req.session.passport.user.user_id, user)
         .then(affected => res.json(affected));
 });
 

@@ -23,6 +23,8 @@
           </div>
           <div class="card-body">
             <h5 class="card-title text-center">Register</h5>
+              <div style="color: red;">{{message}}</div>
+              <br>
             <form class="form-signin" action="/auth/signup" method="POST">
               <div class="form-label-group">
                 <input type="text" id="first_name" name="first_name" class="form-control" placeholder="First Name" required>

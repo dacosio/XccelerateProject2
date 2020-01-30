@@ -1,134 +1,99 @@
-<body onload="init()">
-        <nav class="navbar navbar-light bg-white">
-            
-        <a href="#" class="navbar-brand" id="heading">Social Spark</a>
-        
-        
+<body>
+    <nav class="navbar navbar-light bg-white">
+
+        <a href="/feed" class="navbar-brand" id="heading">Social Spark</a>
+
+
         <form class="form-inline">
-                <div class="input-group">
-                    <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-primary" type="button" id="button-addon2">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </div>
+            <div class="input-group">
+                <input type="text" class="form-control" aria-label="Recipient's username"
+                    aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-primary" type="button" id="button-addon2">
+                        <i class="fa fa-search"></i>
+                    </button>
                 </div>
-                <div><a style="padding-left: 20px;padding-right: 20px;color: white;" href="/auth/logout">Log out</a></div>
-            </form>
-            
-            
+            </div>
+            <div><a style="padding-left: 20px;padding-right: 20px;color: black;" href="/auth/logout">Log out</a></div>
+        </form>
+
+
     </nav>
+
     <div class="container-fluid gedf-wrapper">
         <div class="row">
-            <div class="col-md-2">
-            </div>    
-                    <!-- Middle column -->
-                    <div class="col-md-5 gedf-main">
-                    <div class="card gedf-card">
-                        <div class="card-body">
-                            <h5 class="card-title">Profile</h5>
+            <div class="col-md-3">
+            </div>
+            <!-- Middle column -->
+            <div class="col-md-6 gedf-main">
+                <div class="card gedf-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Profile</h5>
 
-                            <form action="/profile">
-                                <div class="form-group">
-                                  <label for="first_name">First Name</label>
-                                  <input type="text" class="form-control" id="first_name" aria-describedby="firstNameUpdate" placeholder="Enter first name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="last_name">Last Name</label>
-                                    <input type="text" class="form-control" id="last_name" aria-describedby="lastNameUpdate" placeholder="Enter last name">
-                                  </div>
-                                  <div class="form-group">
-                                    <label for="address">Address</label>
-                                    <input type="text" class="form-control" id="address" aria-describedby="address" placeholder="Enter address">
-                                  </div>
-                                  <div class="form-group">
-                                    <label for="city">City</label>
-                                    <input type="text" class="form-control" id="city" aria-describedby="city" placeholder="Enter city">
-                                  </div>
-                                  <div class="form-group">
-                                    <label for="state">State</label>
-                                    <input type="text" class="form-control" id="state" aria-describedby="state" placeholder="Enter State">
-                                  </div>
-                                  <div class="form-group">
-                                    <label for="bio">Bio</label>
-                                    <textarea class="form-control" id="bio" rows="3" placeholder="Enter bio"></textarea>
-                                  </div>
-                                  <div class="tab-pane" id="images" role="tabpanel" aria-labelledby="profileImage">
-                                    <div class="form-group">
+                        <form action="/profile/profileUpdate/{{id}}?_method=PUT" method="post">
+                            <div class="form-group">
+                                <label for="first_name">First Name</label>
+                                <input type="text" class="form-control" id="first_name"
+                                    aria-describedby="firstNameUpdate" placeholder="Enter first name">
+                            </div>
+                            <div class="form-group">
+                                <label for="last_name">Last Name</label>
+                                <input type="text" class="form-control" id="last_name" aria-describedby="lastNameUpdate"
+                                    placeholder="Enter last name">
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Address</label>
+                                <input type="text" class="form-control" id="address" aria-describedby="address"
+                                    placeholder="Enter address">
+                            </div>
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" class="form-control" id="city" aria-describedby="city"
+                                    placeholder="Enter city">
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State</label>
+                                <input type="text" class="form-control" id="state" aria-describedby="state"
+                                    placeholder="Enter State">
+                            </div>
+                            <div class="form-group">
+                                <label for="bio">Bio</label>
+                                <textarea class="form-control" id="bio" rows="3" placeholder="Enter bio"></textarea>
+                            </div>
+                            <div class="tab-pane" id="images" role="tabpanel" aria-labelledby="profileImage">
+                                {{!-- <div class="form-group">
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input" id="profileImage">
                                             <label class="custom-file-label" for="profileImage">Upload profile image</label>
                                         </div>
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                              </form>
-    
-                        </div>
-                    </div>
-    
-                    </div>
-                <!-- Middle column -->
-    
-                <!-- Friends column -->
-                <div class="col-md-3">
-                    <div class="card gedf-card">
-                        <div class="card-body">
-                            <h5 class="card-subtitle">Friends</h5>
-                            <h7 class="card-title text-muted">{{user_friendship_count}}</h7>
-                            <div class="d-flex justify-content-between align-items-center card-text">
-                                <div class="mr-2">
-                                    <a href="#">
-                                        <img class="rounded-circle" width="25" src="https://picsum.photos/50/50" alt="">
-                                        {{user_2.profile_name}}
-                                    </a>
-                                    <a id="unfriend" data-toggle="collapse" href="#{{user_2.profile_name}}" role="button" aria-expanded="false" aria-controls="collapseFriend">
-                                        <i class="fas fa-chevron-circle-down"></i>
-                                    </a>
-                                    <div class="collapse" id="{{user_2.profile_name}}">
-                                        <div style="text-align: right;">
-                                          <a href="#">Remove Friend</a>
-                                        </div>
-                                      </div>
-                                </div>
+                                    </div> --}}
                             </div>
-                            <div class="d-flex justify-content-between align-items-center card-text">
-                                <div class="mr-2">
-                                    <a href="#">
-                                        <img class="rounded-circle" width="25" src="https://picsum.photos/50/50" alt="">
-                                        {{user_3.profile_name}}
-                                    </a>
-                                    <a id="unfriend" data-toggle="collapse" href="#{{user_3.profile_name}}" role="button" aria-expanded="false" aria-controls="collapseFriend">
-                                        <i class="fas fa-chevron-circle-down"></i>
-                                    </a>
-                                    <div class="collapse" id="{{user_3.profile_name}}">
-                                        <div style="text-align: right;">
-                                          <a href="#">Remove Friend</a>
-                                        </div>
-                                      </div>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center card-text">
-                                <div class="mr-2">
-                                    <a href="#">
-                                        <img class="rounded-circle" width="25" src="https://picsum.photos/50/50" alt="">
-                                        {{user_4.profile_name}}
-                                    </a>
-                                    <a id="unfriend" data-toggle="collapse" href="#{{user_4.profile_name}}" role="button" aria-expanded="false" aria-controls="collapseFriend">
-                                        <i class="fas fa-chevron-circle-down"></i>
-                                    </a>
-                                    <div class="collapse" id="{{user_4.profile_name}}">
-                                        <div style="text-align: right;">
-                                          <a href="#">Remove Friend</a>
-                                        </div>
-                                      </div>
-                                </div>
-                            </div>
-                        </div>
+                            <button type="submit" class="btn btn-primary" onclick="saveProfileUpdate()">Save</button>
+                            <a href="/feed" class="btn btn-warning">Close</a>
+                        </form>
+
+                        
                     </div>
+
                 </div>
-                <!-- Friends column -->
-        <div class="col-md-2">
+                <!-- Middle column -->
+
+                <div class="col-md-3">
+                </div>
+            </div>
         </div>
-    </div>
-    </div>
+
+<script>
+function saveProfileUpdate(){
+    axios
+        .put('/profile/profileUpdate/{{id}}', {user_id: id})
+        .then(function(res) {
+            console.log(res)
+        })
+
+}
+
+
+
+
+</script>

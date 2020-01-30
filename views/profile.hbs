@@ -7,6 +7,7 @@
             <a href="/feed" class="navbar-brand" id="heading">Social Spark</a>
 
             <form class="form-inline">
+                <div> <a style="padding-left: 20px;padding-right: 20px; color:black;" href='/profile/profileUpdate'>Update profile</a></div>
                 <div class="input-group">
                     <input type="text" class="form-control" id="searchUser" autocomplete="off">
                     <div class="input-group-append">
@@ -39,7 +40,6 @@
                                         <div class="h5 m-0">{{first_name}} {{last_name}}</div>
                                         <div class="h7">Location - {{city}}</div>
                                         <div class="h7">Joined {{created_at}}</div>
-                                        <div class="h7">{{bio}}</div>
                                         {{#if showAddRemoveFriend}}
                                             {{#unless isFriend}}
                                             <button onclick="addFriend({{user_id}})"> Add friend</button> <!--todo-->

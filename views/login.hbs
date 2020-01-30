@@ -24,7 +24,8 @@
           </div>
           <div class="card-body">
             <h5 class="card-title text-center">Login</h5>
-            <div class="alert alert-danger" role="alert" id="errorMessage" style="display:none"></div>
+            <div style="color: red;">{{message}}</div>
+            <br>
             <form class="form-signin" id="login" action="/auth/login" method="POST">
               <div class="form-label-group">
                 <input type="email" id="email" class="form-control" name="username" placeholder="Email address"

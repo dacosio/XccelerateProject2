@@ -2,7 +2,7 @@
 const express = require('express');
 var router = express.Router();
 const bcrypt = require('bcrypt')
-
+const flash = require('connect-flash')
 const passport = require('passport')
 const UserService = require('../services/user.service');
 const userService = new UserService()
@@ -15,13 +15,15 @@ const userService = new UserService()
 router.post('/login', passport.authenticate('local-login', {
     successRedirect: '/feed',
     failureRedirect: '/auth/login',
+    failureFlash: true
 
 }))
 
 /*Sign Up*/
 router.post('/signup', passport.authenticate('local-signup', {
     successRedirect: '/auth/login',
-    failureRedirect: '/auth/signup'
+    failureRedirect: '/auth/signup',
+    failureFlash: true
 }))
 
 router.get('/logout', function (req, res) {
@@ -32,7 +34,7 @@ router.get('/logout', function (req, res) {
 });
 
 router.get('/auth/login', (req, res, next) => {
-    res.render('login')
+    res.render('login', {message: req.flash('error')})
 })
 
 // function isLoggedIn(req, res, next) {

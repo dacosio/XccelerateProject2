@@ -9,7 +9,7 @@ const userService = new UserService();
 const postService = new PostService();
 const friendService = new FriendService();
 
-/* GET profile page. */
+/* GET profile page. This is mounted to /profile */
 router.get('/:id', function (req, res, next) {
     var id = parseInt(req.params.id);
     let userProfile = null;
@@ -91,21 +91,32 @@ router.get('/:id', function (req, res, next) {
         });
 });
 
+
+
 /*UPDATE PROFILE */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-module.exports = router;
+// router.put('/profileUpdate/:id', function(req, res, next){
+//     if(req.params.id == req.session.passport.user.user_id) {
+//         let user = {
+//             first_name: req.body.first_name,
+//             last_name: req.body.last_name,
+//             address: req.body.address,
+//             city: req.body.city,
+//             state: req.body.state,
+//             bio :  req.body.bio
+//           };
+//           userService
+//               .update(req.session.passport.user.user_id, user)
+//               .then(affected => {
+//                 console.log(affected)
+//                 res.render('feed');
+//               })
+//     }
+//     else {
+//         next(new Error('error' ))
+//     }
+// })
+                
+    
+   
+module.exports = router

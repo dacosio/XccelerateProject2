@@ -9,7 +9,6 @@ function generatePost(post) {
                     </div>
                     <div class="ml-2">
                         <div class="h5 m-0">@${post.firstname1 + ' ' + post.lastname1} --> @${post.firstname2 + ' ' + post.lastname2}</div>
-                        <div class="h7 text-muted">${post.user_name}</div>
                 </div>
             <div>
 
