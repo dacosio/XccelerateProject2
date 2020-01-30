@@ -11,7 +11,6 @@ router.get('/', function(req, res, next){
     userService
         .getAll()
         .then(users => {
-            console.log(users);
             res.json(users);
         });
 });

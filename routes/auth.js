@@ -16,13 +16,13 @@ router.post('/login', passport.authenticate('local-login', {
     successRedirect: '/feed',
     failureRedirect: '/auth/login',
 
-}));
+}))
 
 /*Sign Up*/
 router.post('/signup', passport.authenticate('local-signup', {
     successRedirect: '/auth/login',
     failureRedirect: '/auth/signup'
-}));
+}))
 
 // function isLoggedIn(req, res, next) {
 //     if (req.isAuthenticated()) {
@@ -176,16 +176,18 @@ router.post('/signup', passport.authenticate('local-signup', {
 
  */
 
-router.get('/logout', function(req, res){
+router.get('/logout', function (req, res) {
     console.log('logging out')
     req.logout();
     res.redirect('/auth/login');
     console.log('should I get here?')
-  });
+});
 
-  router.get('/auth/login', (req,res,next) => {
+router.get('/auth/login', (req, res, next) => {
     res.render('login')
-  })
+})
+
+
 
 
 module.exports = router;

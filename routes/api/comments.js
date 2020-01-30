@@ -11,7 +11,6 @@ router.get('/', function(req,res,next) {
     commentService
         .getAll()
         .then(comments => {
-            console.log(comments);
             res.json(comments)
         });
 });

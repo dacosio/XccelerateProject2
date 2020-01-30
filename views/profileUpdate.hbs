@@ -28,14 +28,14 @@
                         <div class="card-body">
                             <h5 class="card-title">Profile</h5>
 
-                            <form>
+                            <form action="/profile">
                                 <div class="form-group">
-                                  <label for="firstName">First Name</label>
-                                  <input type="text" class="form-control" id="firstNameUpdate" aria-describedby="firstNameUpdate" placeholder="Enter first name">
+                                  <label for="first_name">First Name</label>
+                                  <input type="text" class="form-control" id="first_name" aria-describedby="firstNameUpdate" placeholder="Enter first name">
                                 </div>
                                 <div class="form-group">
-                                    <label for="lastName">Last Name</label>
-                                    <input type="text" class="form-control" id="lastNameUpdate" aria-describedby="lastNameUpdate" placeholder="Enter last name">
+                                    <label for="last_name">Last Name</label>
+                                    <input type="text" class="form-control" id="last_name" aria-describedby="lastNameUpdate" placeholder="Enter last name">
                                   </div>
                                   <div class="form-group">
                                     <label for="address">Address</label>
@@ -44,6 +44,10 @@
                                   <div class="form-group">
                                     <label for="city">City</label>
                                     <input type="text" class="form-control" id="city" aria-describedby="city" placeholder="Enter city">
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="state">State</label>
+                                    <input type="text" class="form-control" id="state" aria-describedby="state" placeholder="Enter State">
                                   </div>
                                   <div class="form-group">
                                     <label for="bio">Bio</label>
@@ -63,33 +67,7 @@
                         </div>
                     </div>
     
-                    <!-- Personal posts to own wall -->
-                    <div class="card gedf-card">
-                        <div class="card-header">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="mr-2">
-                                        <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
-                                    </div>
-                                    <div class="ml-2">
-                                        <div class="h5 m-0">${user.firstname1 + ' ' + user.lastname1} (personal post to own wall)</div>
-                                    </div>
-                                </div>
-                            <div>
-                            </div>
-                        </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>&nbsp;${created_at.fromNow()}</div>
-                            <p class="card-text">${post.body}</p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="#" class="card-link"><i class="fas fa-heart"></i> Like</a>
-                            <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
-                        </div>
                     </div>
-                     <!-- Personal posts to own wall -->
-                </div>
                 <!-- Middle column -->
     
                 <!-- Friends column -->

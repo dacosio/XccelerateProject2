@@ -37,20 +37,52 @@ router.get('/:id', function (req, res, next) {
             return friendService.getFriends(id);
         })
         .then(function(friends){
-            if(friends && friends.length > 0)
-                userProfile.friends = friends.map(function(friend){
-                    return (friend.user_1 == id)? 
-                    {
-                        id: friend.user_2,
-                        name: friend.firstname2 + " " + friend.lastname2
-                    } : 
-                    {
-                        id: friend.user_1,
-                        name: friend.firstname1 + " " + friend.lastname1
-                    } ;
+            if(friends && friends.length > 0){
+                userProfile.friends = friends
+                    .filter(function(friend){
+                        return friend.isAccepted == true;
+                    })
+                    .map(function(friend){
+                        return {
+                            id: (friend.user_1 == id)? friend.user_2 : friend.user_1,
+                            name: (friend.user_1 == id)? friend.firstname2 + " " + friend.lastname2 : friend.firstname1 + " " + friend.lastname1
+                        };
+                    });
+            }
+
+            userProfile.showAddRemoveFriend = userProfile.user_id != req.session.passport.user.user_id;
+
+            userProfile.isFriend = (userProfile.friends && userProfile.friends.length > 0)?
+                userProfile.friends.find((friend) => friend.id == req.session.passport.user.user_id): false;
+
+            return friendService.getFriendRequests(req.session.passport.user.user_id);
+        })
+        .then(function(friendRequests){
+            userProfile.friendRequestSent = false;
+            if(friendRequests && friendRequests.length > 0) {
+                userProfile.friendRequests = friendRequests
+                .filter(function(friend){
+                    return friend.isAccepted == false;
+                })
+                .map(function(friend){
+                    return {
+                        friendId: friend.friends_id,
+                        id: (friend.user_1 == id)? friend.user_2 : friend.user_1,
+                        name: (friend.user_1 == id)? friend.firstname2 + " " + friend.lastname2 : friend.firstname1 + " " + friend.lastname1
+                    };
                 });
-            
-            console.log(userProfile);
+
+                userProfile.friendRequestSent = userProfile.friendRequests.some(function(fr){
+                    console.log(`${fr.id} == ${id}`);
+                    return fr.id == id;
+                });
+
+                if(userProfile.friendRequestSent) {
+                    userProfile.showAddRemoveFriend = false;
+                }
+            }
+
+            console.log("user profile", userProfile);
             res.render('profile', userProfile);
         })
         .catch(function(err){
@@ -58,5 +90,22 @@ router.get('/:id', function (req, res, next) {
             res.render('error', err);
         });
 });
+
+/*UPDATE PROFILE */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 module.exports = router;

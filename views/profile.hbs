@@ -4,7 +4,7 @@
     <body onload="init()">
         <nav class="navbar navbar-light bg-white">
 
-            <a href="#" class="navbar-brand" id="heading">Social Spark</a>
+            <a href="/feed" class="navbar-brand" id="heading">Social Spark</a>
 
             <form class="form-inline">
                 <div class="input-group">
@@ -40,9 +40,19 @@
                                         <div class="h7">Location - {{city}}</div>
                                         <div class="h7">Joined {{created_at}}</div>
                                         <div class="h7">{{bio}}</div>
-                                        <button> Add friend</button> <!--todo-->
-                                        <button> Remove friend</button> <!--todo-->
-                                        
+                                        {{#if showAddRemoveFriend}}
+                                            {{#unless isFriend}}
+                                            <button onclick="addFriend({{user_id}})"> Add friend</button> <!--todo-->
+                                            {{/unless}}
+                                            {{#if isFriend}}
+                                            <button onclick="removeFriend({{user_id}})"> Remove friend</button> <!--todo-->
+                                            {{/if}}
+                                        {{/if}}
+                                        {{#if friendRequestSent}}
+                                            <button disabled> Requested</button>
+                                        {{/if}}
+                                        <div><a href="/profile/profileUpdate">Update Profile</a>
+                                        </div
                                     </div>
                                 </div>
                             </div>
@@ -102,3 +112,26 @@
                 </div>
             </div>
         </div>
+<script type="text/javascript">
+function addFriend(id){
+    console.log("add friend", id);
+    axios
+        .post('/api/friends', {user_id: id})
+        .then(function(res){
+                console.log(res)
+                window.location.reload();
+        });
+}
+
+function removeFriend(id){
+    if(confirm("Confirm unfriend?")){
+        console.log("Friend:", id);
+        axios
+            .del('/api/friends', {user_id: id})
+            .then(function(res){
+                console.log(res)
+                window.location.reload();
+            })
+    }
+}
+</script>

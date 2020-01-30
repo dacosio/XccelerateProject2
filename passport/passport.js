@@ -17,12 +17,11 @@ module.exports = (app) => {
 
     passport.use('local-login', new LocalStrategy(
         async (email, password, done) => {
-            console.log('logging in')
             try {
                 let users = await knex('users').where({
                     email: email
                 });
-                console.log("users: ", users);
+
                 if (users.length == 0) {
                     return done(null, false, {
                         message: 'Incorrect Credentials.'
@@ -31,7 +30,6 @@ module.exports = (app) => {
                 let user = users[0];
                 let result = await bcrypt.checkPassword(password, user.password)
                 if (result) {
-                    console.log('wroking in logging in')
                     return done(null, user);
                 } else {
                     return done(null, false, {
@@ -69,8 +67,9 @@ module.exports = (app) => {
                     password: hash
                 };
                 let userId = await knex('users').insert(newUser).returning('user_id');
-                newUser.id = userId[0];
+                newUser.user_id = userId[0]; // <<<<<<<<
                 done(null, newUser);
+                
             } catch (err) {
                 done(err)
             }
@@ -81,19 +80,17 @@ module.exports = (app) => {
 
 
     passport.serializeUser((user, done) => {
-        // console.log(user, "serialIse user")
-        done(null, user.user_id);
+        done(null, user);
     });
 
-    passport.deserializeUser(async (id, done) => {
-        // console.log(id, '<==user_id')
+    passport.deserializeUser(async (user, done) => {
         let users = await knex('users').where({
-            user_id: id
+            user_id: user.user_id
         });
         if (users.length == 0) {
-            return done(new Error(`Wrong User id ${id}`))
+            return done(new Error(`Wrong User id ${user.user_id}`))
         }
-        let user = users[0];
+        user = users[0];
         return done(null, user)
     })
 

@@ -30,8 +30,8 @@ router.get('/getAllFriends/:id', function(req,res,next) {
 //create friend
 router.post('/', function(req,res,next) {
     let friend = {
-        user_1: req.body.user_1,
-        user_2: req.body.user_2,
+        user_1: req.session.passport.user.user_id,
+        user_2: req.body.user_id,
         isAccepted: false
     };
     friendService

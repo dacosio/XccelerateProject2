@@ -1,5 +1,4 @@
 function init() {
-    console.log("hi crush");
     getAllFriends(1); //todo use url's id
 }
 
@@ -10,7 +9,6 @@ function getAllFriends(id) {
         .get(`/api/friends/getAllFriends/${id}`)
         .then(function(response){
             var friends = response.data;
-            console.log(friends);
 
             if(friends && friends.length > 0){
                 var all_friends = friends

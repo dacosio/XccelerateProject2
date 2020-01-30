@@ -1,7 +1,7 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
+// var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session');
 const setupPassport = require('./passport/passport');
@@ -43,7 +43,7 @@ setupPassport(app);
 //router from routes folder
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
-app.use('/profile',isLoggedin, profileRouter);
+app.use('/profile', isLoggedin, profileRouter); //remove and add isLoggedin for testing
 app.use('/api/posts',postsRouter);
 app.use('/api/comments',commentsRouter);
 app.use('/api/friends',friendsRouter);

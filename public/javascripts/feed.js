@@ -39,7 +39,6 @@ function getPosts() {
     axios
         .get('/api/posts/getFormatted')
         .then(function (result) {
-            // console.log(result);
             renderPosts(result.data);
         })
         .catch(function (error) {
@@ -73,7 +72,6 @@ function createPost() {
 
     axios.post('/api/posts', post)
         .then(function (response) {
-            console.log(response);
             getPosts();
             $("#message").val("");
         })
@@ -98,3 +96,6 @@ function updatePost() {
             console.log(error);
         });
 }
+
+
+/*GET USER in Feed */
