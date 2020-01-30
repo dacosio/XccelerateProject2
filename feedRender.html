@@ -1,3 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Social Spark</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
+        id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/ad8ad4f1d7.js" crossorigin="anonymous"></script>
+     <link rel="stylesheet" href="./public/stylesheets/style.css"> 
+</head>
+
+<body>
+
 
 <body onload="init()">
     <nav class="navbar navbar-light bg-white">
@@ -26,13 +42,13 @@
                         <div class="h7 text-muted">Name: {{profile_name}}</div>
                         <div class="h7 text-muted">Bio: {{bio}}</div>
                     </div>
-                    {{!-- <ul class="list-group list-group-flush">
+                    <!-- {{!-- <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             <div class="h6 text-muted">Friends</div>
                             <div class="h5">{{friends_count}}</div>
                         </li>
 
-                    </ul> --}}
+                    </ul> --}} -->
                 </div>
             </div>
 
@@ -40,19 +56,19 @@
 
                 <!--- \\\\\\\Post-->
                 <div class="card gedf-card">
-                    {{!-- <div class="card-header"> --}}
-                        {{!-- <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist"> --}}
+                    <!-- <div class="card-header"> -->
+                        <!-- {{!-- <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist"> --}}
                             {{!-- <li class="nav-item"> --}}
-                                {{!-- <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab"
-                                    aria-controls="posts" aria-selected="true">Make a post</a> --}}
+                                <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab"
+                                    aria-controls="posts" aria-selected="true">Make a post</a>
                             {{!-- </li> --}}
                             {{!-- <li class="nav-item">
                                 <a class="nav-link" id="images-tab" data-toggle="tab" role="tab" aria-controls="images"
                                     aria-selected="false" href="#images">Images</a>
                             </li> --}}
-                        {{!-- </ul> --}}
-                    {{!-- </div> --}}
-                   <div class="card-body">
+                        {{!-- </ul> --}} -->
+                    <!-- </div> -->
+                    <div class="card-body">
                         <h5 class="card-title">Post</h5>
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="posts" role="tabpanel"
@@ -64,7 +80,7 @@
                                 </div>
 
                             </div>
-                            {{!-- <div class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="images-tab">
+                            <!-- {{!-- <div class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="images-tab">
                                 <div class="form-group">
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="customFile">
@@ -72,7 +88,7 @@
                                     </div>
                                 </div>
                                 <div class="py-4"></div>
-                            </div> --}}
+                            </div> --}} -->
                         </div>
                         <div class="btn-toolbar justify-content-between">
                             <div class="btn-group">
@@ -88,7 +104,7 @@
                 <div id="feeds"></div>
                 <!-- Feed /////-->
             </div>
-            {{!-- Right side card --}}
+            <!-- {{!-- Right side card --}} -->
             <div class="col-md-3">
                 <div class="card gedf-card">
                     <div class="card-body">
@@ -106,15 +122,15 @@
                     </div>
                 </div>
             </div>
-            {{!-- Right side card --}}
+            <!-- {{!-- Right side card --}} -->
 
-            
+         
         </div>
     </div>
 
 
 
-    {{!-- <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -131,11 +147,60 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="/javascripts/feed.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
-    {{!-- <script type=text/javascript>
+    <!-- {{!-- <script type=text/javascript>
         $(document).ready(function(){
             init();
         });
-    </script> --}}
+    </script> --}} -->
+</body>
 
+</html>
+
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+    </script>
+    <script
+        src="https://cdn.jsdelivr.net/gh/xcash/bootstrap-autocomplete@v2.3.0/dist/latest/bootstrap-autocomplete.min.js">
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Advanced 1
+            $('#searchUser').autoComplete({
+                resolver: 'custom',
+                events: {
+                    search: function (qry, callback) {
+                        // let's do a custom ajax call
+                        $.ajax(
+                            '/api/users/search', {
+                                data: {
+                                    'qry': qry
+                                }
+                            }
+                        ).done(function (res) {
+                            console.log(res)
+                            callback(res.results)
+                        });
+                    }
+                }
+            });
+            $('#searchUser').on('autocomplete.select', function (event, item){
+                console.log(event, item);
+                if(item) window.location.href="/profile/"+item.id;
+            });
+        });
+    </script>
+</body>
+
+</html>
