@@ -54,6 +54,7 @@ module.exports = (app) => {
                 let users = await knex('users').where({
                     email: username
                 });
+                // console.log('users----->>>>>',users)
                 if (users.length > 0) {
                     return done(null, false, {
                         message: "Email Already Taken"

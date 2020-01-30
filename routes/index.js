@@ -128,6 +128,8 @@ router.get('/auth/signup', function (req, res, next) {
   res.render('signup')
 })
 
+
+
 //GET Profile Update page
 router.get('/profile/profileUpdate', isLoggedIn, function (req, res, next) {
   res.render('profileUpdate')

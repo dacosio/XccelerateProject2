@@ -59,7 +59,7 @@ router.post('/', function(req, res, next){
       userService
         .create(user)
         // .then(user_id => res.json(user_id));
-        res.render('signup')
+        res.render('login')
 });
 
 //update the user

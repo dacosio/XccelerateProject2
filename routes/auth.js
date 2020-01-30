@@ -24,6 +24,17 @@ router.post('/signup', passport.authenticate('local-signup', {
     failureRedirect: '/auth/signup'
 }))
 
+router.get('/logout', function (req, res) {
+    // console.log('logging out')
+    req.logout();
+    res.redirect('/auth/login');
+    // console.log('should I get here?')
+});
+
+router.get('/auth/login', (req, res, next) => {
+    res.render('login')
+})
+
 // function isLoggedIn(req, res, next) {
 //     if (req.isAuthenticated()) {
 //         return next();
@@ -176,16 +187,7 @@ router.post('/signup', passport.authenticate('local-signup', {
 
  */
 
-router.get('/logout', function (req, res) {
-    console.log('logging out')
-    req.logout();
-    res.redirect('/auth/login');
-    console.log('should I get here?')
-});
 
-router.get('/auth/login', (req, res, next) => {
-    res.render('login')
-})
 
 
 
