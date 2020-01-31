@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser')
 const flash = require('connect-flash')
 const session = require('express-session');
 const setupPassport = require('./passport/passport');
-const isLoggedin = require('./passport/isLoggedin')
+const isLoggedIn = require('./passport/isLoggedin')
 
 
 
@@ -51,7 +51,7 @@ setupPassport(app);
 //router from routes folder
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
-app.use('/profile', isLoggedin, profileRouter); //remove and add isLoggedin for testing
+app.use('/profile', isLoggedIn, profileRouter); //remove and add isLoggedin for testing
 app.use('/api/posts',postsRouter);
 app.use('/api/comments',commentsRouter);
 app.use('/api/friends',friendsRouter);

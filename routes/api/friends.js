@@ -49,17 +49,32 @@ router.put('/:id', function(req, res, next){
         isAccepted: req.body.isAccepted == "1"
     };
     friendService
-        .update(req.params.id, post)
+        .update(req.params.id, friend)
         .then(affected => res.json(affected));
 });
 
 //delete posts (:/id)
 router.delete('/:id', function(req, res, next){
     friendService
-        .delete(req.params.id)
+        .remove(req.params.id)
         .then(affected => res.json(affected));
 });
 
+
+router.put('/accept/:id', function(req,res,next) {
+    let friend = {
+        isAccepted: true
+    };
+    friendService
+        .update(req.params.id, friend)
+        .then(affected => res.json(affected));
+})
+
+router.put('/decline/:id', function(req,res,next) {
+    friendService
+        .remove(req.params.id)
+        .then(affected => res.json(affected));
+})
 
 
 

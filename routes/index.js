@@ -25,8 +25,6 @@ router.get('/auth/login', (req, res, next) => {
 
 //FEED
 router.get('/feed', isLoggedIn, function (req, res, next) {
-  // console.log('This is the feed router')
-  console.log(req.session.passport.user, '<----passport session');
 
   var id = parseInt(req.session.passport.user.user_id);
   let userProfile = null;
@@ -109,7 +107,7 @@ router.get('/feed', isLoggedIn, function (req, res, next) {
               }
           }
 
-          console.log("feed",userProfile);
+          console.log("feed", userProfile);
           res.render('feed', userProfile);
       })
       .catch(function(err){
@@ -132,7 +130,24 @@ router.get('/auth/signup', function (req, res, next) {
 
 //GET Profile Update page
 router.get('/profile/profileUpdate', isLoggedIn, function (req, res, next) {
-  res.render('profileUpdate')
+    var id = parseInt(req.session.passport.user.user_id);
+    let userProfile = null;
+  
+    userService
+        .get(id)
+        .then(function(user){
+            if(user) {
+                res.render('profileUpdate', user[0])
+            }
+            else {
+                throw new Error("user not found");
+            }
+        })
+        .catch(function(err){
+            console.log(err);
+            res.render('error', err);
+        });
+
 })
 
 //friends -> friend's post -> post's comments

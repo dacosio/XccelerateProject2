@@ -1,4 +1,3 @@
-
 <body onload="init()">
     <nav class="navbar navbar-light bg-white">
 
@@ -153,12 +152,22 @@
     </script> --}}
 
 <script>
-    function acceptFriendRequest(id){
-        axios
-            .put('/api/friends', {friends_id: id})
-            .then(function(res) {
-                console.log(res)
-            })
+function acceptFriendRequest(id){
+    axios
+        .put('/api/friends/accept/'+id)
+        .then(function(res) {
+            window.location.reload();
+        })
 
-    }
+}
+
+
+function declineFriendRequest(id){
+    axios
+        .put('/api/friends/decline/'+id)
+        .then(function(res) {
+            window.location.reload();
+        })
+}
 </script>
+</body>

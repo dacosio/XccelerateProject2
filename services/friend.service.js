@@ -7,18 +7,18 @@ class FriendService {
         return knex('friends')
             .select()
     }
-
+/*
+-- user_1 == your id : you are the one who requested for the add friend
+-- user_2 == your id : you have a friend request
+*/
     getFriends(id){
-
         return knex
             .select('f.friends_id', 'f.isAccepted', 'f.user_1','u.first_name AS firstname1','u.last_name AS lastname1','f.user_2','u2.first_name AS firstname2','u2.last_name AS lastname2')
             .from('friends AS f')
             .innerJoin('users AS u', 'f.user_1','u.user_id')
             .innerJoin('users AS u2', 'f.user_2','u2.user_id')
             .where('f.user_1','=',id)
-            .orWhere(`f.user_2`,'=',id)
-            .andWhere('f.isAccepted','=',true)
-            
+            .orWhere(`f.user_2`,'=',id);
     }
 
     getFriendRequests(id) {
@@ -27,10 +27,8 @@ class FriendService {
             .from('friends AS f')
             .innerJoin('users AS u', 'f.user_1','u.user_id')
             .innerJoin('users AS u2', 'f.user_2','u2.user_id')
-            .where('f.user_1','=',id)
-            .orWhere(`f.user_2`,'=',id)
-            .andWhere('f.isAccepted','=',false)
-                      
+            .where('f.user_2','=',id)
+            .andWhere('f.isAccepted','=',false);
     }
 
     get(id){
@@ -54,7 +52,7 @@ class FriendService {
             .update(obj);
     }
 
-    delete(id){
+    remove(id){
         return knex('friends')
             .where('friends_id', '=', id)
             .del()

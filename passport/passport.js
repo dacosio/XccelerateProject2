@@ -57,9 +57,10 @@ module.exports = (app) => {
                 // console.log('users----->>>>>',users)
                 if (users.length > 0) {
                     return done(null, false, {
-                        message: "Email Already Taken"
+                        message: "Email Already Taken or Password didn't match"
                     });
                 }
+
                 let hash = await bcrypt.hashPassword(password)
                 const newUser = {
                     first_name: req.body.first_name,

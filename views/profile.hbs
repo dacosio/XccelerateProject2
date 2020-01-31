@@ -45,14 +45,17 @@
                                             <button onclick="addFriend({{user_id}})"> Add friend</button> <!--todo-->
                                             {{/unless}}
                                             {{#if isFriend}}
-                                            <button onclick="removeFriend({{user_id}})"> Remove friend</button> <!--todo-->
+                                            <button onclick="removeFriend({{friends_id}})"> Remove friend</button> <!--todo-->
                                             {{/if}}
                                         {{/if}}
                                         {{#if friendRequestSent}}
                                             <button disabled> Requested</button>
                                         {{/if}}
-                                        <div><a href="/profile/profileUpdate">Update Profile</a>
-                                        </div
+                                        {{#if showConfirmDeclineRequest}}
+                                            <button class="fa fa-check" title="Accept friend request" onclick="acceptFriendRequest({{friendRequest.friends_id}})"></button>
+                                            <button class="fa fa-times" title="Decline friend request" onclick="declineFriendRequest({{friendRequest.friends_id}})"></button>
+                                        {{/if}}
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -124,14 +127,31 @@ function addFriend(id){
 }
 
 function removeFriend(id){
-    if(confirm("Confirm unfriend?")){
-        console.log("Friend:", id);
+    console.log("Friend:", id);
         axios
-            .del('/api/friends', {user_id: id})
+            .delete('/api/friends/'+id)
             .then(function(res){
                 console.log(res)
                 window.location.reload();
-            })
-    }
+            });
 }
+
+function acceptFriendRequest(id){
+    axios
+        .put('/api/friends/accept/'+id)
+        .then(function(res) {
+            window.location.reload();
+        })
+
+}
+
+
+function declineFriendRequest(id){
+    axios
+        .put('/api/friends/decline/'+id)
+        .then(function(res) {
+            window.location.reload();
+        })
+}
+
 </script>
