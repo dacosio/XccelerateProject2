@@ -1,3 +1,7 @@
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="/javascripts/profile.js"></script>
+
+    <body onload="init()">
     <nav class="navbar navbar-light bg-white">
 
         <a href="/feed" class="navbar-brand" id="heading">Social Spark</a>
@@ -13,7 +17,16 @@
                     </button>
                 </div>
             </div>
-            <div><a style="padding-left: 20px;padding-right: 20px;color: black;" href="/auth/logout">Log out</a></div>
+            <div class="dropdown show" style="padding-left: 20px;padding-right: 20px;">
+                <a class="btn btn-outline-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Settings
+                </a>
+              
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <a class="dropdown-item" href="/profile/profileUpdate">Update Profile</a>
+                  <a class="dropdown-item" href="/auth/logout">Log out</a>
+                </div>
+              </div>
         </form>
 
 
