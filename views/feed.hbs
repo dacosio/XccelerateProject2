@@ -5,7 +5,7 @@
 
         <form class="form-inline">
             <div class="input-group">
-                <div> <a style="padding-left: 20px;padding-right: 20px;color: white;" href='/profile/profileUpdate'>Update profile</a></div>
+                {{!-- <div> <a style="padding-left: 20px;padding-right: 20px;color: white;" href='/profile/profileUpdate'>Update profile</a></div> --}}
                 <input type="text" class="form-control" id="searchUser" autocomplete="off">
                 <div class="input-group-append">
                     <button class="btn btn-outline-primary" type="button" id="button-addon2">
@@ -13,7 +13,17 @@
                     </button>
                 </div>
             </div>
-            <div><a style="padding-left: 20px;padding-right: 20px;color: white;" href="/auth/logout">Log out</a></div>
+             <div class="dropdown show" style="padding-left: 20px;padding-right: 20px;">
+                <a class="btn btn-outline-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Settings
+                </a>
+              
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <a class="dropdown-item" href="/profile/profileUpdate">Update Profile</a>
+                  <a class="dropdown-item" href="/auth/logout">Log out</a>
+                </div>
+            </div>
+            {{!-- <div><a style="padding-left: 20px;padding-right: 20px;color: white;" href="/auth/logout">Log out</a></div> --}}
         </form>
     </nav>
 
