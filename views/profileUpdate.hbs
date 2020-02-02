@@ -26,7 +26,7 @@
                   <a class="dropdown-item" href="/profile/profileUpdate">Update Profile</a>
                   <a class="dropdown-item" href="/auth/logout">Log out</a>
                 </div>
-              </div>
+            </div>
         </form>
 
 
@@ -46,31 +46,31 @@
                             <div class="form-group">
                                 <label for="first_name">First Name</label>
                                 <input type="text" class="form-control" id="first_name" name="first_name"
-                                    aria-describedby="firstNameUpdate" placeholder="Enter first name" value="{{first_name}}">
+                                    aria-describedby="firstNameUpdate" placeholder="Enter first name" maxlength="80" value="{{first_name}}">
                             </div>
                             <div class="form-group">
                                 <label for="last_name">Last Name</label>
                                 <input type="text" class="form-control" name="last_name" id="last_name" aria-describedby="lastNameUpdate"
-                                    placeholder="Enter last name" value="{{last_name}}">
+                                    placeholder="Enter last name" maxlength="80" value="{{last_name}}">
                             </div>
                             <div class="form-group">
                                 <label for="address">Address</label>
                                 <input type="text" class="form-control" name="address" id="address" aria-describedby="address"
-                                    placeholder="Enter address" value="{{address}}">
+                                    placeholder="Enter address" maxlength="60" value="{{address}}">
                             </div>
                             <div class="form-group">
                                 <label for="city">City</label>
                                 <input type="text" class="form-control" name="city" id="city" aria-describedby="city"
-                                    placeholder="Enter city" value="{{city}}">
+                                    placeholder="Enter city" maxlength="60" value="{{city}}">
                             </div>
                             <div class="form-group">
                                 <label for="state">State</label>
                                 <input type="text" class="form-control" name="state" id="state" aria-describedby="state"
-                                    placeholder="Enter State" value="{{state}}">
+                                    placeholder="Enter State" maxlength="60" value="{{state}}">
                             </div>
                             <div class="form-group">
                                 <label for="bio">Bio</label>
-                                <textarea class="form-control" name="bio" id="bio" rows="3" placeholder="Enter bio" >{{bio}}</textarea>
+                                <textarea class="form-control" name="bio" id="bio" rows="3" maxlength= "250" placeholder="Enter bio" >{{bio}}</textarea>
                             </div>
                             <div class="tab-pane" id="images" role="tabpanel" aria-labelledby="profileImage">
                                
