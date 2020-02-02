@@ -1,5 +1,6 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="/javascripts/profile.js"></script>
+    <script type="text/javascript" src="/javascripts/feed.js"></script>
 
     <body onload="init()">
         <nav class="navbar navbar-light bg-white">
@@ -80,6 +81,7 @@
                                     <label class="sr-only" for="message">Post</label>
                                     <textarea class="form-control" id="message" rows="3"
                                         placeholder="What are you thinking?"></textarea>
+                                    <input type="hidden" id="posted_to" value="{{user_id}}"/>
                                 </div>
                             </div>
                         </div>
@@ -91,6 +93,7 @@
                         </div>
                     </div>
                 </div>
+                <div id="feeds">
                     <!-- Personal posts to own wall -->
                     {{#each posts}}
                     <div class="card gedf-card">
@@ -101,27 +104,51 @@
                                         <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
                                     </div>
                                     <div class="ml-2">
-                                        <div class="h5 m-0">{{firstname1}} {{lastname1}} --> {{firstname2}} {{lastname2}} 
-                                        
-                                        </div>
+                                        {{#ifCond firstname1 firstname2}}
+                                        <div class="h5 m-0">{{firstname1}} {{lastname1}}</div>
+                                        {{else}}
+                                        <div class="h5 m-0">{{firstname1}} {{lastname1}} --> {{firstname2}} {{lastname2}}</div>
+                                        {{/ifCond}}
                                     </div>
-                                </div>
-                                <div>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>&nbsp;{{created_at}}
-                            </div>
+                            <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>&nbsp;{{created_at}}</div>
                             <p class="card-text">{{description}}</p>
                         </div>
                         <div class="card-footer">
-                            <a href="#" class="card-link"><i class="fas fa-heart"></i> Like</a>
-                            <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
+                                {{#if isLiked}}
+                                <a href="#" class="card-link" id="like_unlike_{{post_id}}" onclick="unlike({{post_id}})">
+                                {{/if}}
+                                {{#unless isLiked}}
+                                <a href="#" class="card-link" id="like_unlike_{{post_id}}" onclick="like({{post_id}})">
+                                {{/unless}}
+                            
+                                <span id="post_{{post_id}}_likes">
+                                {{#ifCond likes 0}}
+                                {{else}}
+                                    {{likes}}
+                                {{/ifCond}}
+                                </span>
+                                <i class="fa fa-gittip"></i> Like</a>
+                            <div>
+                                <input id="view_comments_{{post_id}}" type="button" value="Comment" onclick="viewComments({{post_id}})">
+                                <br/>
+                                <div id="newComment_{{post_id}}" style="display:none;">
+                                    <textarea id="post_{{post_id}}"></textarea> &nbsp; <button onclick="saveComment({{post_id}})">Save</button>
+                                </div>
+                            </div>
+
+                            <div id="comments_{{post_id}}">
+
+                            </div>
                         </div>
                     </div>
                     {{/each}}
                     <!-- Personal posts to own wall -->
+                </div>
+                    
                 </div>
                 <!-- Middle column -->
 

@@ -36,7 +36,7 @@ router.get('/getAllComments', function(req, res, next){
 router.post('/', function(req,res,next){
     let comment = {
         description: req.body.description,
-        commented_by: req.body.commented_by,
+        commented_by: req.session.passport.user.user_id,
         post_id: req.body.post_id 
     };
     commentService

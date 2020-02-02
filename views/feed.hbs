@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
 </head>
 
-<body onload="init()">
+<body>
     <nav class="navbar navbar-light bg-white">
 
         <a href="/feed" class="navbar-brand" id="heading">Social Spark</a>
@@ -65,7 +65,7 @@
                                     <label class="sr-only" for="message">Post</label>
                                     <textarea class="form-control" id="message" rows="3" maxlength="250"
                                         placeholder="What are you thinking?"></textarea>
-                                    <input type="hidden" id="created_by" value="{{user_id}}"/>
+                                    <input type="hidden" id="posted_to" value="{{user_id}}"/>
                                 </div>
 
                             </div>
@@ -106,13 +106,31 @@
                             <p class="card-text">{{description}}</p>
                         </div>
                         <div class="card-footer">
-                            <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
+                                {{#if isLiked}}
+                                <a href="#" class="card-link" id="like_unlike_{{post_id}}" onclick="unlike({{post_id}})">
+                                {{/if}}
+                                {{#unless isLiked}}
+                                <a href="#" class="card-link" id="like_unlike_{{post_id}}" onclick="like({{post_id}})">
+                                {{/unless}}
                             
-                            <div id="newComments">
-                            <br><input type="button" value="Comment" onclick="newComment()"><br><a id="newComment"></a>
+                                <span id="post_{{post_id}}_likes">
+                                {{#ifCond likes 0}}
+                                {{else}}
+                                    {{likes}}
+                                {{/ifCond}}
+                                </span>
+                                <i class="fa fa-gittip"></i> Like</a>
+                            <div>
+                                <input id="view_comments_{{post_id}}" type="button" value="Comment" onclick="viewComments({{post_id}})">
+                                <br/>
+                                <div id="newComment_{{post_id}}" style="display:none;">
+                                    <textarea id="post_{{post_id}}"></textarea> &nbsp; <button onclick="saveComment({{post_id}})">Save</button>
+                                </div>
                             </div>
 
-                            <!-- <a id="comments" href="#" class="card-link"><i class="fa fa-comment" onclick="newPoint()"></i> Comment</a>-->
+                            <div id="comments_{{post_id}}">
+
+                            </div>
                         </div>
                     </div>
                     {{/each}}

@@ -19,7 +19,7 @@ var postsRouter = require('./routes/api/posts');
 var commentsRouter = require('./routes/api/comments');
 var friendsRouter = require('./routes/api/friends');
 var usersRouter = require('./routes/api/users');
-
+var likesRouter = require('./routes/api/likes');
 var exphbs  = require('express-handlebars');
 
 var app = express();
@@ -62,6 +62,7 @@ setupPassport(app);
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/profile', isLoggedIn, profileRouter); //remove and add isLoggedin for testing
+app.use('/api/likes',isLoggedIn, likesRouter);
 app.use('/api/posts',postsRouter);
 app.use('/api/comments',commentsRouter);
 app.use('/api/friends',friendsRouter);

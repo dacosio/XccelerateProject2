@@ -8,6 +8,12 @@ class CommentService {
             .select();
     }
 
+    getCommentsForPost(post_id) {
+        return knex('comments')
+            .where('post_id','=',post_id)
+            .select();
+    }
+
     getAllComments() {
         return knew.raw(
             `select p.post_id, c.description as commentdesc, c.commented_by, u.first_name, u.last_name, c.created_at

@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
+const CommentService = require('../../services/comment.service');
 const PostService = require('../../services/post.service');
 
+const commentService = new CommentService();
 const postService = new PostService();
 
 /********** These are all mounted to /api/posts *********/
@@ -30,11 +32,17 @@ router.get('/:id', function(req, res, next){
         .then(post => res.json(post));
 });
 
+router.get('/:id/comments', function(req,res,next){
+    commentService
+        .getCommentsForPost(req.params.id)
+        .then(comments => res.json(comments));
+});
+
 //create posts
 router.post('/', function(req, res, next){
     let post = {
         description: req.body.description,
-        created_by: req.body.created_by,
+        created_by: req.session.passport.user.user_id,
         posted_to: req.body.posted_to
     };
     postService

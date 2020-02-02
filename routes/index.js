@@ -6,10 +6,12 @@ var router = express.Router();
 var UserService = require('../services/user.service');
 var PostService = require('../services/post.service');
 var FriendService = require('../services/friend.service');
+var LikesService = require('../services/likes.service');
 
 const userService = new UserService();
 const postService = new PostService();
 const friendService = new FriendService();
+const likesService = new LikesService();
 
 /* GET home/login page. */
 router.get('/', function (req, res, next) {
@@ -45,8 +47,20 @@ router.get('/feed', isLoggedIn, function (req, res, next) {
           userProfile.created_at = moment(new Date(userProfile.created_at)).fromNow();
 
           if(posts && posts.length > 0){
+            posts.sort(function (a, b) {
+                // Turn your strings into dates, and then subtract them
+                // to get a value that is either negative, positive, or zero.
+                return new Date(b.created_at) - new Date(a.created_at);
+            });
               for (let index = 0; index < posts.length; index++) {
                   posts[index].created_at = moment(new Date(posts[index].created_at)).fromNow();
+                  likesService
+                    .getAllLikesForPost(posts[index].post_id)
+                    .then(function(lk){
+                        posts[index].likes = lk.length;
+
+                        posts[index].isLiked = lk.some(like => like.post_id == posts[index].post_id && like.created_by == id);
+                    });
               }
           }
           userProfile.posts = posts;

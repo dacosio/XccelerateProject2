@@ -4,11 +4,12 @@ var router = express.Router();
 var UserService = require('../services/user.service');
 var PostService = require('../services/post.service');
 var FriendService = require('../services/friend.service');
+var LikesService = require('../services/likes.service');
 
 const userService = new UserService();
 const postService = new PostService();
 const friendService = new FriendService();
-
+const likesService = new LikesService();
 /* GET profile page. This is mounted to /profile */
 router.get('/:id', function (req, res, next) {
     var id = parseInt(req.params.id);
@@ -17,25 +18,37 @@ router.get('/:id', function (req, res, next) {
     userService
         .get(id)
         .then(function(user){
-            console.log(user, '<----------------user');
-            
             if(user) {
                 userProfile = user[0];
-                return postService.getPostsByUser(id);
+                return postService.getAllPostsForUser(id);
             }
             else {
                 throw new Error("user not found");
             }
         })
         .then(function(posts){
-            userProfile.posts = posts;
+            console.log("POSTS",posts);
             userProfile.created_at = moment(new Date(userProfile.created_at)).fromNow();
+  
             if(posts && posts.length > 0){
-                posts.forEach(function(post){
-                    post.created_at = moment(new Date(post.created_at)).fromNow();
+                posts.sort(function (a, b) {
+                    // Turn your strings into dates, and then subtract them
+                    // to get a value that is either negative, positive, or zero.
+                    return new Date(b.created_at) - new Date(a.created_at);
                 });
+                
+                for (let index = 0; index < posts.length; index++) {
+                    posts[index].created_at = moment(new Date(posts[index].created_at)).fromNow();
+                    likesService
+                      .getAllLikesForPost(posts[index].post_id)
+                      .then(function(lk){
+                          posts[index].likes = lk.length;
+  
+                          posts[index].isLiked = lk.some(like => like.post_id == posts[index].post_id && like.created_by == id);
+                      });
+                }
             }
-            
+            userProfile.posts = posts;
             return friendService.getFriends(id);
         })
         .then(function(friends){
