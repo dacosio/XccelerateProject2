@@ -19,7 +19,7 @@ router.get('/search', function(req, res, next){
     userService
         .searchUser(req.query.qry)
         .then(function(users) {
-            console.log(users);
+            //console.log(users);
             var response = {
               results: users.map(function(user){
                 return {

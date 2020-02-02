@@ -18,8 +18,7 @@ router.get('/', function(req, res, next){
 //get all posts on feed
 router.get('/getFormatted', function(req, res, next){
     postService
-        .getAllFormatted()
-        // .then(posts => res.json(posts.rows));
+        .getAllPostsForUser(req.session.passport.user.user_id)
         .then(posts => res.json(posts));
 
 });

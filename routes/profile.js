@@ -17,6 +17,8 @@ router.get('/:id', function (req, res, next) {
     userService
         .get(id)
         .then(function(user){
+            console.log(user, '<----------------user');
+            
             if(user) {
                 userProfile = user[0];
                 return postService.getPostsByUser(id);

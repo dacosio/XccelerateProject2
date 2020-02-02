@@ -4,7 +4,7 @@ function init() {
 
 
 function getAllFriends(id) {
-    console.log("getting list of friends");
+    //console.log("getting list of friends");
     axios
         .get(`/api/friends/getAllFriends/${id}`)
         .then(function(response){

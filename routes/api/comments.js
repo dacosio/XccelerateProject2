@@ -23,6 +23,15 @@ router.get('/:id', function(req,res,next) {
         .then(comment => res.json(comment))
 })
 
+router.get('/getAllComments', function(req, res, next){
+    commentService
+        .getAllComments()
+        // .then(posts => res.json(posts.rows));
+        .then(comments => res.json(comments.rows));
+
+});
+
+
 //create comments
 router.post('/', function(req,res,next){
     let comment = {

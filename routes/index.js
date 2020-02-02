@@ -34,21 +34,22 @@ router.get('/feed', isLoggedIn, function (req, res, next) {
       .then(function(user){
           if(user) {
               userProfile = user[0];
-              return postService.getPostsByUser(id);
+              return postService.getAllPostsForUser(id);
           }
           else {
               throw new Error("user not found");
           }
       })
       .then(function(posts){
-          userProfile.posts = posts;
+          console.log("POSTS",posts);
           userProfile.created_at = moment(new Date(userProfile.created_at)).fromNow();
+
           if(posts && posts.length > 0){
-              posts.forEach(function(post){
-                  post.created_at = moment(new Date(post.created_at)).fromNow();
-              });
+              for (let index = 0; index < posts.length; index++) {
+                  posts[index].created_at = moment(new Date(posts[index].created_at)).fromNow();
+              }
           }
-          
+          userProfile.posts = posts;
           return friendService.getFriends(id);
       })
       .then(function(friends){

@@ -65,6 +65,7 @@
                                     <label class="sr-only" for="message">Post</label>
                                     <textarea class="form-control" id="message" rows="3" maxlength="250"
                                         placeholder="What are you thinking?"></textarea>
+                                    <input type="hidden" id="created_by" value="{{user_id}}"/>
                                 </div>
 
                             </div>
@@ -81,7 +82,41 @@
                 <!-- Post /////-->
 
                 <!--- \\\\\\\Feed-->
-                <div id="feeds"></div>
+                <div id="feeds">
+                    {{#each posts}}
+                    <div class="card gedf-card">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="mr-2">
+                                        <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+                                    </div>
+                                    <div class="ml-2">
+                                        {{#ifCond firstname1 firstname2}}
+                                        <div class="h5 m-0">{{firstname1}} {{lastname1}}</div>
+                                        {{else}}
+                                        <div class="h5 m-0">{{firstname1}} {{lastname1}} --> {{firstname2}} {{lastname2}}</div>
+                                        {{/ifCond}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>&nbsp;{{created_at}}</div>
+                            <p class="card-text">{{description}}</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
+                            
+                            <div id="newComments">
+                            <br><input type="button" value="Comment" onclick="newComment()"><br><a id="newComment"></a>
+                            </div>
+
+                            <!-- <a id="comments" href="#" class="card-link"><i class="fa fa-comment" onclick="newPoint()"></i> Comment</a>-->
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
                 <!-- Feed /////-->
             </div>
             {{!-- Right side card --}}
@@ -153,7 +188,6 @@
     <script
         src="https://cdn.jsdelivr.net/gh/xcash/bootstrap-autocomplete@v2.3.0/dist/latest/bootstrap-autocomplete.min.js">
     </script>
-
     <script>
         function acceptFriendRequest(id) {
             axios
@@ -172,6 +206,8 @@
                     window.location.reload();
                 })
         }
+
+
     </script>
 </body>
 

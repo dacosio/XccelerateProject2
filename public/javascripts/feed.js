@@ -23,7 +23,12 @@ function generatePost(post) {
         </div>
         <div class="card-footer">
             <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
-            <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
+            
+            <div id="newComments">
+            <br><input type="button" value="Comment" onclick="newComment()"><br><a id="newComment"></a>
+            </div>
+
+            <!-- <a id="comments" href="#" class="card-link"><i class="fa fa-comment" onclick="newPoint()"></i> Comment</a>-->
         </div>
     </div>`;
 }
@@ -31,7 +36,7 @@ function generatePost(post) {
 
 
 function init() {
-    getPosts();
+    //getPosts();
 }
 
 function getPosts() {
@@ -65,8 +70,8 @@ function createPost() {
     //todo replace created_by and posted_to
     var post = {
         description: $("#message").val().trim(),
-        created_by: 1,
-        posted_to: 2
+        created_by: $("#created_by").val(),
+        posted_to: $("#created_by").val()
     };
 
     axios.post('/api/posts', post)
@@ -97,4 +102,63 @@ function updatePost() {
 }
 
 
-/*GET USER in Feed */
+
+//Comments
+function newComment() {
+    var newComment = document.getElementById("newComment")
+    var newText = document.createElement("textarea")
+    
+    newText.innerHtml = "";
+    newComment.appendChild(newText)
+    
+    }
+
+function generateComments(comment) {
+    var created_at = moment(new Date(post.created_at));
+    return 
+}
+
+function getComments() {
+    axios
+        .get('/api/comments/getAllComments')
+        .then(function (result) {
+            renderComments(result.data);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+}
+
+function renderComments(comments) {
+    if (!comments || comments.length < 1)
+        return;
+
+    //clear comments
+    $("#comments").html("");
+    comments.sort(function (a, b) {
+        // Turn your strings into dates, and then subtract them
+        // to get a value that is either negative, positive, or zero.
+        return new Date(b.created_at) - new Date(a.created_at);
+    });
+    comments.forEach(function (comment) {
+        $("#comments").append(generateComments(comment));
+    });
+}
+
+function createComment() {
+    //todo replace created_by and posted_to
+    var comment = {
+        description: $("#comment").val().trim(),
+        created_by: req.session.passport.user.user_id,
+        posted_to: 2
+    };
+
+    axios.post('/api/comments', comment)
+        .then(function (response) {
+            getComments();
+            $("#newComment").val("");
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+}

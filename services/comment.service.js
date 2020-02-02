@@ -8,6 +8,18 @@ class CommentService {
             .select();
     }
 
+    getAllComments() {
+        return knew.raw(
+            `select p.post_id, c.description as commentdesc, c.commented_by, u.first_name, u.last_name, c.created_at
+            from "comments" as "c"
+            inner join "posts" as "p"
+            on p.post_id = c.commented_by
+            inner join users as u
+            on c.commented_by = u.user_id
+            `
+        )
+    }
+
     get(id) {
         return knex('comments')
             .where({
