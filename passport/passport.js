@@ -24,7 +24,7 @@ module.exports = (app) => {
 
                 if (users.length == 0) {
                     return done(null, false, {
-                        message: 'Username or Password incorrect'
+                        message: 'Email not existing'
                     })
                 }
                 let user = users[0];
@@ -33,7 +33,7 @@ module.exports = (app) => {
                     return done(null, user);
                 } else {
                     return done(null, false, {
-                        message: 'Username or Password incorrect'
+                        message: 'Password incorrect'
                     })
                 }
 
