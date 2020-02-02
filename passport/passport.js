@@ -44,9 +44,11 @@ module.exports = (app) => {
     ));
 
     //NEW LOCAL SIGNUP WITH ACCESS TO REQ.BODY
-      passport.use('local-signup', new LocalStrategy(
+    passport.use('local-signup', new LocalStrategy(
 
-        {  passReqToCallback : true},
+        {
+            passReqToCallback: true
+        },
 
         async (req, username, password, done) => {
             // console.log(req, '<< passport signup')
@@ -57,21 +59,31 @@ module.exports = (app) => {
                 // console.log('users----->>>>>',users)
                 if (users.length > 0) {
                     return done(null, false, {
-                        message: "Email Already Taken or Password didn't match"
+                        message: "Email Already Taken"
                     });
                 }
 
-                let hash = await bcrypt.hashPassword(password)
-                const newUser = {
-                    first_name: req.body.first_name,
-                    last_name: req.body.last_name,
-                    email: username,
-                    password: hash
-                };
-                let userId = await knex('users').insert(newUser).returning('user_id');
-                newUser.user_id = userId[0]; // <<<<<<<<
-                done(null, newUser);
-                
+                let confirmPassword = req.body.confirmPassword;
+
+                if (confirmPassword == password) {
+                    let hash = await bcrypt.hashPassword(password)
+                    const newUser = {
+                        first_name: req.body.first_name,
+                        last_name: req.body.last_name,
+                        email: username,
+                        password: hash
+                    };
+                    let userId = await knex('users').insert(newUser).returning('user_id');
+                    newUser.user_id = userId[0]; // <<<<<<<<
+                    done(null, newUser);
+                }
+                else {
+                    return done(null, false, {
+                        message: "Password did not match"
+                    })
+                }
+
+
             } catch (err) {
                 done(err)
             }
