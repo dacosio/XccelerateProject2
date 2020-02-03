@@ -27,6 +27,7 @@ var app = express();
 // view engine setup
 app.engine('.hbs', exphbs({
   extname: '.hbs',
+  defaultLayout: 'main',
   helpers: {
     ifCond: function(v1, v2, options) {
       if(v1 === v2) {
