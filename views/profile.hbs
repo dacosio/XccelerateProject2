@@ -131,14 +131,17 @@
                                     {{likes}}
                                 {{/ifCond}}
                                 </span>
-                                <i class="fa fa-gittip"></i> Like</a>
-                            <div>
-                                <input id="view_comments_{{post_id}}" type="button" value="Comment" onclick="viewComments({{post_id}})">
+                                <i class="far fa-thumbs-up"></i> Like</a>
+                            <div style="padding-top: 10px;">
+                                <input id="view_comments_{{post_id}}" type="button" value="Comment" class="btn btn-outline-primary" onclick="viewComments({{post_id}})">
                                 <br/>
                                 <div id="newComment_{{post_id}}" style="display:none;">
-                                    <textarea id="post_{{post_id}}"></textarea> &nbsp; <button onclick="saveComment({{post_id}})">Save</button>
+                                    <textarea placeholder="What's your comment?" cols="30" class="form-control" id="post_{{post_id}}"></textarea> &nbsp; <button style="margin-top:10px;" class="btn btn-outline-primary" onclick="saveComment({{post_id}})">Save</button>
                                 </div>
                             </div>
+
+                        
+
 
                             <div id="comments_{{post_id}}">
 
